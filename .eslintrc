@@ -1,0 +1,35 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": { "jsx": true } // Allows for the parsing of JSX
+  },
+  "plugins": ["import", "import", "react-hooks", "@typescript-eslint"],
+  "extends": ["next", "next/core-web-vitals", "plugin:react/recommended", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error", // Ex: no conditional hooks
+    "react-hooks/exhaustive-deps": "warn", // Hook dependency checks
+    "react/prop-types": "off", // Using TypeScript's types instead
+    "no-undef": "error"
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "plugins": ["@typescript-eslint"],
+      "extends": [
+        "plugin:@typescript-eslint/eslint-recommended", // eslint TypeScript rules (github.com/typescript-eslint/typescript-eslint)
+        "plugin:@typescript-eslint/recommended"
+      ],
+      "rules": {
+        "@typescript-eslint/no-empty-function": "off",
+        "no-undef": "off"
+      }
+    }
+  ]
+}
