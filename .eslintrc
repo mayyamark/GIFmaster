@@ -10,6 +10,16 @@
     "ecmaVersion": 6,
     "ecmaFeatures": { "jsx": true } // Allows for the parsing of JSX
   },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["@app", "./src"]
+        ],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
   "plugins": ["import", "import", "react-hooks", "@typescript-eslint"],
   "extends": ["next", "next/core-web-vitals", "plugin:react/recommended", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
   "rules": {

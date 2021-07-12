@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { GIFObject } from '../../generic-types';
+import { GIFObject } from '@app/generic-types';
 
 interface ResponceData {
   error: boolean;

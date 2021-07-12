@@ -1,7 +1,8 @@
 import React from 'react';
 import { GetStaticPropsResult } from 'next';
 import { AppProps } from 'next/app';
-import HomePage from '../src/components/pages/HomePage/HomePage';
+
+import HomePage from '@app/components/pages/HomePage/HomePage';
 
 interface Props {
   url: string;

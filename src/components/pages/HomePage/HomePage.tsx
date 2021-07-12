@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import CardMedia from '@material-ui/core/CardMedia';
 
-import useFetch from '../../../hooks/useFetch/useFetch';
+import useFetch from '@app/hooks/useFetch/useFetch';
 interface Props {
   url: string;
 }
