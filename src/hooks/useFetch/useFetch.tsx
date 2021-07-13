@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 import { GIFObject } from '@app/generic-types';
 
 interface ResponceData {
