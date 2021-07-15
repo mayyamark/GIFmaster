@@ -1,10 +1,12 @@
 import { makeStyles, Theme } from '@material-ui/core';
+import { COLORS } from '@app/theme';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     display: 'flex',
     width: '100%',
     height: '100%',
+    boxShadow: `0 12px 20px 0 ${COLORS.darkGray}`,
   },
 
   content: {

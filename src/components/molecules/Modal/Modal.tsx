@@ -8,6 +8,8 @@ import {
   Box,
 } from '@material-ui/core';
 import Close from '@material-ui/icons/Close';
+import Fade from '@material-ui/core/Fade';
+
 import useStyles from './Modal.styles';
 
 interface ExtendStyles {
@@ -29,24 +31,26 @@ const Modal: React.FC<Props> = ({
 
   return (
     <MuiModal {...other} className={other.className}>
-      <Box className={classes.root}>
-        <Paper
-          elevation={0}
-          square
-          className={clsx(classes.content, extendStyles?.content)}
-        >
-          <IconButton
-            aria-label='close'
-            disableRipple
-            disableFocusRipple
-            className={classes.closeButton}
-            onClick={onClose}
+      <Fade in={other.open}>
+        <Box className={classes.root}>
+          <Paper
+            elevation={0}
+            square
+            className={clsx(classes.content, extendStyles?.content)}
           >
-            <Close className={classes.closeIcon} />
-          </IconButton>
-          {children}
-        </Paper>
-      </Box>
+            <IconButton
+              aria-label='close'
+              disableRipple
+              disableFocusRipple
+              className={classes.closeButton}
+              onClick={onClose}
+            >
+              <Close className={classes.closeIcon} />
+            </IconButton>
+            {children}
+          </Paper>
+        </Box>
+      </Fade>
     </MuiModal>
   );
 };
