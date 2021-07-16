@@ -19,11 +19,32 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
+    backgroundColor: COLORS.black,
+  },
+
+  menuText: {
+    marginLeft: theme.spacing(1),
+    fontWeight: 'bold',
+  },
+
+  divider: {
+    backgroundColor: COLORS.white,
   },
 
   icon: {
     color: COLORS.white,
+  },
+
+  linksContainer: {
+    display: 'flex',
+    height: '100%',
+    flexDirection: 'column',
+    flex: 1,
+  },
+
+  randomGifLink: {
+    marginTop: 'auto',
   },
 }));
 
