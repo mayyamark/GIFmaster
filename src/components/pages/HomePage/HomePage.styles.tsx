@@ -26,6 +26,16 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  container: {
+    [theme.breakpoints.down('md')]: {
+      marginTop: theme.spacing(8),
+    },
+
+    [theme.breakpoints.up('md')]: {
+      marginTop: theme.spacing(10),
+    },
+  },
+
   gif: {
     width: '100%',
     height: 'auto',

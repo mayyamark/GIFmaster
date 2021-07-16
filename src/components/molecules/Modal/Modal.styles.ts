@@ -24,17 +24,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     position: 'absolute',
     top: 0,
     right: 0,
-    padding: 20,
+    padding: theme.spacing(1),
+    margin: theme.spacing(1),
     zIndex: 1,
-
-    '&:hover': {
-      backgroundColor: 'silver',
-    },
-
-    [theme.breakpoints.up('md')]: {
-      padding: theme.spacing(1),
-      margin: theme.spacing(1),
-    },
   },
 
   closeIcon: {
