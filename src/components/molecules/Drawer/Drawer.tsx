@@ -49,8 +49,7 @@ const Drawer: React.FC<Props> = ({ open, handleClose }): JSX.Element => {
     <MuiDrawer
       className={classes.drawer}
       variant='temporary'
-      onEscapeKeyDown={handleClose}
-      onBackdropClick={handleClose}
+      onClose={handleClose}
       anchor='left'
       open={open}
       classes={{
