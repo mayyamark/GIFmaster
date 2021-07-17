@@ -26,6 +26,7 @@ const AppBar: React.FC<Props> = ({ handleOpenDrawer }): JSX.Element => {
             aria-label='open drawer'
             onClick={handleOpenDrawer}
             edge='start'
+            className={classes.openDrawerButton}
           >
             <MenuIcon />
           </IconButton>

@@ -11,7 +11,7 @@ const SearchInput = (): JSX.Element => {
   return (
     <Box className={classes.search}>
       <Box className={classes.searchIcon}>
-        <SearchIcon />
+        <SearchIcon className={classes.icon} />
       </Box>
       <InputBase
         placeholder='Search GIFs…'

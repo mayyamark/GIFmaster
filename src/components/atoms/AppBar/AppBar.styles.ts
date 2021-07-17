@@ -18,7 +18,12 @@ const useStyles = makeStyles(() => ({
   },
 
   title: {
+    color: COLORS.white,
     fontWeight: 'bold',
+  },
+
+  openDrawerButton: {
+    color: COLORS.white,
   },
 }));
 

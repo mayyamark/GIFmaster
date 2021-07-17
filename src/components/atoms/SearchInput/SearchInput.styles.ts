@@ -1,3 +1,4 @@
+import { COLORS } from '@app/theme';
 import { alpha, makeStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 
   inputRoot: {
-    color: 'inherit',
+    color: COLORS.white,
   },
 
   inputInput: {
@@ -50,6 +51,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down('sm')]: {
       margin: theme.spacing(1, 1, 1, 0),
     },
+  },
+
+  icon: {
+    color: COLORS.white,
   },
 }));
 
