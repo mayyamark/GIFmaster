@@ -29,10 +29,10 @@ const HomePage: React.FC<Props> = ({ url }): JSX.Element => {
   return (
     <Layout>
       <Box className={classes.root}>
-        {data?.map((gif) => {
+        {data?.map((gif, index) => {
           return (
             <CardMedia
-              key={gif.id}
+              key={gif.id + index}
               component='img'
               src={gif.images.preview_gif.url}
               alt={gif.title}
@@ -49,7 +49,7 @@ const HomePage: React.FC<Props> = ({ url }): JSX.Element => {
           <Modal
             extendStyles={{ content: classes.modalContent }}
             open={openModal}
-            onClose={() => {
+            handleClose={() => {
               setOpenModal(false);
               setGifToPreview(null);
             }}

@@ -38,7 +38,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 
   gif: {
-    width: '80%',
+    maxWidth: '70%',
+    marginTop: theme.spacing(1),
   },
 
   raiting: {

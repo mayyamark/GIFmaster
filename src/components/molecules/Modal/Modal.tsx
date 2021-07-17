@@ -9,6 +9,7 @@ import {
 } from '@material-ui/core';
 import Close from '@material-ui/icons/Close';
 import Fade from '@material-ui/core/Fade';
+import Backdrop from '@material-ui/core/Backdrop';
 
 import useStyles from './Modal.styles';
 
@@ -18,19 +19,26 @@ interface ExtendStyles {
 
 interface Props extends ModalProps {
   extendStyles?: ExtendStyles;
-  onClose?: () => void;
+  handleClose?: () => void;
 }
 
 const Modal: React.FC<Props> = ({
   children,
   extendStyles,
-  onClose,
+  handleClose,
   ...other
 }) => {
   const classes = useStyles();
 
   return (
-    <MuiModal {...other} className={other.className}>
+    <MuiModal
+      {...other}
+      className={other.className}
+      BackdropComponent={Backdrop}
+      BackdropProps={{
+        timeout: 500,
+      }}
+    >
       <Fade in={other.open}>
         <Box className={classes.root}>
           <Paper
@@ -43,7 +51,7 @@ const Modal: React.FC<Props> = ({
               disableRipple
               disableFocusRipple
               className={classes.closeButton}
-              onClick={onClose}
+              onClick={handleClose}
             >
               <Close className={classes.closeIcon} />
             </IconButton>
