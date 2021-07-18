@@ -2,7 +2,7 @@ import React from 'react';
 import { GetStaticPropsResult } from 'next';
 import { AppProps } from 'next/app';
 
-import HomePage from '@app/components/pages/HomePage/HomePage';
+import TrendingPage from '@app/components/pages/TrendingPage/TrendingPage';
 
 interface Props {
   endpointUrl: string;
@@ -13,7 +13,7 @@ interface HomeAppProps extends AppProps {
 }
 
 export default function Home(props: HomeAppProps): JSX.Element {
-  return <HomePage {...props} />;
+  return <TrendingPage {...props} />;
 }
 export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
   return {

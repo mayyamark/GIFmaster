@@ -8,13 +8,13 @@ import Modal from '@app/components/molecules/Modal/Modal';
 import GifPreview from '@app/components/molecules/GifPreview/GifPreview';
 import useFetch from '@app/hooks/useFetch/useFetch';
 import { GIFObject } from '@app/generic-types';
-import useStyles from './HomePage.styles';
+import useStyles from './GifsLayout.styles';
 
 interface Props {
   endpointUrl: string;
 }
 
-const HomePage: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
+const TrendingLayout: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
   const classes = useStyles();
 
   const [openModal, setOpenModal] = useState(false);
@@ -28,7 +28,7 @@ const HomePage: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
 
   return (
     <Layout>
-      <Box className={classes.root}>
+      <Box className={classes.container}>
         {data?.map((gif, index) => {
           return (
             <CardMedia
@@ -64,4 +64,4 @@ const HomePage: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
   );
 };
 
-export default HomePage;
+export default TrendingLayout;
