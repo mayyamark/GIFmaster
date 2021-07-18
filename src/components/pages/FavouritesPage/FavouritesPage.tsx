@@ -1,7 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 
-import TrendingLayout from '@app/components/organisms/GifsLayout/GifsLayout';
+import GifsLayout from '@app/components/organisms/GifsLayout/GifsLayout';
 import useGifsByIdsEndpoint from '@app/hooks/useGifsByIdsEndpoint/useGifsByIdsEndpoint';
 
 interface Props {
@@ -12,7 +12,7 @@ const FavouritesPage: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
   const favouritesEndpoint = useGifsByIdsEndpoint(endpointUrl, 'favourites');
 
   return favouritesEndpoint ? (
-    <TrendingLayout endpointUrl={favouritesEndpoint} />
+    <GifsLayout endpointUrl={favouritesEndpoint} />
   ) : (
     <Typography>Loading...</Typography>
   );

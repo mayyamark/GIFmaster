@@ -14,7 +14,7 @@ interface Props {
   endpointUrl: string;
 }
 
-const TrendingLayout: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
+const GifsLayout: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
   const classes = useStyles();
 
   const [openModal, setOpenModal] = useState(false);
@@ -64,4 +64,4 @@ const TrendingLayout: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
   );
 };
 
-export default TrendingLayout;
+export default GifsLayout;
