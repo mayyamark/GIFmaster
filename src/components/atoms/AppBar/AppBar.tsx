@@ -1,6 +1,7 @@
 import React from 'react';
 import MuiAppBar, { AppBarProps } from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Hidden from '@material-ui/core/Hidden';
@@ -30,9 +31,11 @@ const AppBar: React.FC<Props> = ({ handleOpenDrawer }): JSX.Element => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant='h6' className={classes.title}>
-            GIFmaster
-          </Typography>
+          <Link underline='none' href='/'>
+            <Typography variant='h6' className={classes.title}>
+              GIFmaster
+            </Typography>
+          </Link>
         </Box>
         <Hidden smDown>
           <SearchInput />
