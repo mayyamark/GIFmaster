@@ -11,16 +11,16 @@ import { GIFObject } from '@app/generic-types';
 import useStyles from './HomePage.styles';
 
 interface Props {
-  url: string;
+  endpointUrl: string;
 }
 
-const HomePage: React.FC<Props> = ({ url }): JSX.Element => {
+const HomePage: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
   const classes = useStyles();
 
   const [openModal, setOpenModal] = useState(false);
   const [gifToPreview, setGifToPreview] = useState<GIFObject | null>(null);
 
-  const { loading, error, data } = useFetch(url);
+  const { loading, error, data } = useFetch(endpointUrl);
 
   if (error) {
     return <Typography>Error!</Typography>;

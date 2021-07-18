@@ -8,7 +8,7 @@ interface ResponceData {
   data: GIFObject[] | null;
 }
 
-const useFetch = (url: string): ResponceData => {
+const useFetch = (endpointUrl: string): ResponceData => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const [data, setData] = useState<GIFObject[] | null>(null);
@@ -19,7 +19,7 @@ const useFetch = (url: string): ResponceData => {
     (async () => {
       try {
         setLoading(true);
-        const response = await fetch(url);
+        const response = await fetch(endpointUrl);
         const json = await response.json();
 
         if (!didCancel) {
@@ -41,7 +41,7 @@ const useFetch = (url: string): ResponceData => {
     return function cleanup() {
       didCancel = true;
     };
-  }, [url]);
+  }, [endpointUrl]);
 
   return { loading, error, data };
 };

@@ -5,11 +5,11 @@ import { AppProps } from 'next/app';
 import HomePage from '@app/components/pages/HomePage/HomePage';
 
 interface Props {
-  url: string;
+  endpointUrl: string;
 }
 
 interface HomeAppProps extends AppProps {
-  url: string;
+  endpointUrl: string;
 }
 
 export default function Home(props: HomeAppProps): JSX.Element {
@@ -18,7 +18,7 @@ export default function Home(props: HomeAppProps): JSX.Element {
 export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
   return {
     props: {
-      url: `${process.env.GIPHY_QUERY_BASE_URL}/trending?api_key=${process.env.GIPHY_API_KEY}`,
+      endpointUrl: `${process.env.GIPHY_QUERY_BASE_URL}/trending?api_key=${process.env.GIPHY_API_KEY}`,
     },
   };
 }
