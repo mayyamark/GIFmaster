@@ -8,11 +8,11 @@ interface Props {
   endpointUrl: string;
 }
 
-interface HomeAppProps extends AppProps {
+interface TrendingProps extends AppProps {
   endpointUrl: string;
 }
 
-export default function Home(props: HomeAppProps): JSX.Element {
+export default function Trending(props: TrendingProps): JSX.Element {
   return <TrendingPage {...props} />;
 }
 export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {

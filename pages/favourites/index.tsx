@@ -8,11 +8,11 @@ interface Props {
   endpointUrl: string;
 }
 
-interface FavouritesAppProps extends AppProps {
+interface FavouritesProps extends AppProps {
   endpointUrl: string;
 }
 
-export default function Home(props: FavouritesAppProps): JSX.Element {
+export default function Favourites(props: FavouritesProps): JSX.Element {
   return <FavouritesPage {...props} />;
 }
 export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
