@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import isArray from 'lodash/isArray';
 import { GIFObject } from '@app/generic-types';
 
 interface ResponceData {
@@ -24,7 +24,7 @@ const useFetch = (endpointUrl: string): ResponceData => {
 
         if (!didCancel) {
           if (json.data) {
-            setData(json.data);
+            isArray(json.data) ? setData(json.data) : setData([json.data]);
           }
 
           if (json.meta.status > 400) {
