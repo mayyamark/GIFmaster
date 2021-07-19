@@ -14,7 +14,7 @@ interface Props {
 
 const SingleGifLayout: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
   const classes = useStyles();
-  const { loading, error, data } = useFetch(endpointUrl);
+  const { loading, error, data, triggerFetch } = useFetch(endpointUrl);
 
   if (error) {
     return <Typography>Error!</Typography>;
@@ -22,14 +22,16 @@ const SingleGifLayout: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
 
   return (
     <Layout>
-      {data && (
+      {loading ? (
+        <Typography>Loading...</Typography>
+      ) : data ? (
         <Box className={classes.container}>
           <GifPreview gif={data[0]} />
-          {/* TODO: Implement refetching */}
-          <Button variant='outlined'>Another one</Button>
+          <Button variant='outlined' onClick={triggerFetch}>
+            Another one
+          </Button>
         </Box>
-      )}
-      {loading && <Typography>Loading...</Typography>}
+      ) : null}
     </Layout>
   );
 };
