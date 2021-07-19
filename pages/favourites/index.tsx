@@ -5,11 +5,13 @@ import { AppProps } from 'next/app';
 import FavouritesPage from '@app/components/pages/FavouritesPage/FavouritesPage';
 
 interface Props {
-  endpointUrl: string;
+  favouritesEndpointUrl: string;
+  randomGifEndpointUrl: string;
 }
 
 interface FavouritesProps extends AppProps {
-  endpointUrl: string;
+  favouritesEndpointUrl: string;
+  randomGifEndpointUrl: string;
 }
 
 export default function Favourites(props: FavouritesProps): JSX.Element {
@@ -18,7 +20,8 @@ export default function Favourites(props: FavouritesProps): JSX.Element {
 export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
   return {
     props: {
-      endpointUrl: `${process.env.GIPHY_QUERY_BASE_URL}?ids=*&api_key=${process.env.GIPHY_API_KEY}`,
+      favouritesEndpointUrl: `${process.env.GIPHY_QUERY_BASE_URL}?ids=*&api_key=${process.env.GIPHY_API_KEY}`,
+      randomGifEndpointUrl: `${process.env.GIPHY_QUERY_BASE_URL}/random?api_key=${process.env.GIPHY_API_KEY}`,
     },
   };
 }

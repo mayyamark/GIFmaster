@@ -1,20 +1,27 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
 
 import GifsLayout from '@app/components/organisms/GifsLayout/GifsLayout';
+import SingleGifLayout from '@app/components/organisms/SingleGifLayout/SingleGifLayout';
 import useGifsByIdsEndpoint from '@app/hooks/useGifsByIdsEndpoint/useGifsByIdsEndpoint';
 
 interface Props {
-  endpointUrl: string;
+  favouritesEndpointUrl: string;
+  randomGifEndpointUrl: string;
 }
 
-const FavouritesPage: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
-  const favouritesEndpoint = useGifsByIdsEndpoint(endpointUrl, 'favourites');
+const FavouritesPage: React.FC<Props> = ({
+  favouritesEndpointUrl,
+  randomGifEndpointUrl,
+}): JSX.Element => {
+  const formattedFavouritesEndpointUrl = useGifsByIdsEndpoint(
+    favouritesEndpointUrl,
+    'favourites'
+  );
 
-  return favouritesEndpoint ? (
-    <GifsLayout endpointUrl={favouritesEndpoint} />
+  return formattedFavouritesEndpointUrl ? (
+    <GifsLayout endpointUrl={formattedFavouritesEndpointUrl} />
   ) : (
-    <Typography>Loading...</Typography>
+    <SingleGifLayout endpointUrl={randomGifEndpointUrl} />
   );
 };
 

@@ -12,7 +12,11 @@ const useGifsByIdsEndpoint = (
     if (baseUrl) {
       const ids = getItem(itemKey);
 
-      setEndpoint(baseUrl.replace(/[*]/g, `${ids}`));
+      if (ids) {
+        setEndpoint(baseUrl.replace(/[*]/g, `${ids}`));
+      } else {
+        setEndpoint(null);
+      }
     }
   }, [baseUrl, itemKey]);
 
