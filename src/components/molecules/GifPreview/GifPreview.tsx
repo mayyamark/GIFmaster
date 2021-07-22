@@ -6,11 +6,10 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
-// import FavoriteIcon from '@material-ui/icons/Favorite';
 
+import { useFavourites } from '@app/context/FavouritesContext';
 import { GIFObject } from '@app/generic-types';
 import { explainRaiting } from '@app/utils/actions';
-import { changeFavourites } from '@app/utils/actions';
 import useStyles from './GifPreview.styles';
 
 interface Props {
@@ -19,6 +18,7 @@ interface Props {
 
 const GifPreview: React.FC<Props> = ({ gif }) => {
   const classes = useStyles();
+  const { changeFavourites } = useFavourites();
 
   return (
     <Box className={classes.root}>

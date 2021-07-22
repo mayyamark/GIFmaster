@@ -6,8 +6,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Layout from '@app/components/molecules/Layout/Layout';
 import Modal from '@app/components/molecules/Modal/Modal';
 import GifPreview from '@app/components/molecules/GifPreview/GifPreview';
-import useFetch from '@app/hooks/useFetch/useFetch';
 import { GIFObject } from '@app/generic-types';
+import useFetch from '@app/hooks/useFetch/useFetch';
 import useStyles from './GifsLayout.styles';
 
 interface Props {

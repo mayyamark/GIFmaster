@@ -1,27 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Typography from '@material-ui/core/Typography';
 
 import GifsLayout from '@app/components/organisms/GifsLayout/GifsLayout';
 import SingleGifLayout from '@app/components/organisms/SingleGifLayout/SingleGifLayout';
-import useGifsByIdsEndpoint from '@app/hooks/useGifsByIdsEndpoint/useGifsByIdsEndpoint';
+import { useFavourites } from '@app/context/FavouritesContext';
 
 interface Props {
-  favouritesEndpointUrl: string;
+  getFavouritesEndpointUrl: (ids: string) => string;
   randomGifEndpointUrl: string;
 }
 
 const FavouritesPage: React.FC<Props> = ({
-  favouritesEndpointUrl,
+  getFavouritesEndpointUrl,
   randomGifEndpointUrl,
 }): JSX.Element => {
-  const formattedFavouritesEndpointUrl = useGifsByIdsEndpoint(
-    favouritesEndpointUrl,
-    'favourites'
-  );
+  const { favourites } = useFavourites();
 
-  return formattedFavouritesEndpointUrl ? (
-    <GifsLayout endpointUrl={formattedFavouritesEndpointUrl} />
+  const [endpoint, setEndpoint] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (favourites) {
+      setEndpoint(getFavouritesEndpointUrl(favourites));
+    } else {
+      setEndpoint(randomGifEndpointUrl);
+    }
+  }, [favourites, getFavouritesEndpointUrl, randomGifEndpointUrl]);
+
+  if (!endpoint) {
+    return <Typography>Loading...</Typography>;
+  }
+
+  return endpoint === randomGifEndpointUrl ? (
+    <SingleGifLayout endpointUrl={endpoint} />
   ) : (
-    <SingleGifLayout endpointUrl={randomGifEndpointUrl} />
+    <GifsLayout endpointUrl={endpoint} />
   );
 };
 
