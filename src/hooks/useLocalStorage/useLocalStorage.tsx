@@ -22,6 +22,10 @@ const useLocalStorage = (key: string): LocalStorageResult => {
 
   const changeStoredData = (id: string) => {
     setStoredData((prev) => {
+      if (!prev) {
+        return id;
+      }
+
       const idsArray = prev.split(',');
 
       return idsArray.find((i) => i === id)
