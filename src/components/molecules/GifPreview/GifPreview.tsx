@@ -7,7 +7,7 @@ import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 
-import { useFavourites } from '@app/context/FavouritesContext';
+import { useMyGifs } from '@app/context/MyGifsContext';
 import { GIFObject } from '@app/generic-types';
 import explainRaiting from '@app/utils/explain-raitings';
 import useStyles from './GifPreview.styles';
@@ -18,7 +18,7 @@ interface Props {
 
 const GifPreview: React.FC<Props> = ({ gif }) => {
   const classes = useStyles();
-  const { changeFavourites } = useFavourites();
+  const { changeFavourites } = useMyGifs();
 
   return (
     <Box className={classes.root}>

@@ -35,7 +35,11 @@ const Drawer: React.FC<Props> = ({ open, handleClose }): JSX.Element => {
         label: 'Upload a GIF',
         IconComponent: PublishIcon,
       },
-      { href: '/my-gifs', label: 'My GIFs', IconComponent: PermMediaIcon },
+      {
+        href: '/my-uploads',
+        label: 'My uploads',
+        IconComponent: PermMediaIcon,
+      },
       {
         href: '/random-gif',
         label: 'Show random GIF',

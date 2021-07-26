@@ -4,23 +4,23 @@ import MyGifsWrapper from '@app/components/organisms/MyGifsWrapper/MyGifsWrapper
 import { useMyGifs } from '@app/context/MyGifsContext';
 
 interface Props {
-  getFavouritesEndpointUrl: (ids: string) => string;
+  getMyUploadsEndpointUrl: (ids: string) => string;
   randomGifEndpointUrl: string;
 }
 
-const FavouritesPage: React.FC<Props> = ({
-  getFavouritesEndpointUrl,
+const MyUploadsPage: React.FC<Props> = ({
+  getMyUploadsEndpointUrl,
   randomGifEndpointUrl,
 }): JSX.Element => {
-  const { favourites } = useMyGifs();
+  const { uploads } = useMyGifs();
 
   return (
     <MyGifsWrapper
-      gifIds={favourites}
-      getEndpointUrl={getFavouritesEndpointUrl}
+      gifIds={uploads}
+      getEndpointUrl={getMyUploadsEndpointUrl}
       randomGifEndpointUrl={randomGifEndpointUrl}
     />
   );
 };
 
-export default FavouritesPage;
+export default MyUploadsPage;

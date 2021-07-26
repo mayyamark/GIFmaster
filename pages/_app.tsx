@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import { FavouritesProvider } from '@app/context/FavouritesContext';
+import { MyGifsProvider } from '@app/context/MyGifsContext';
 import theme from '@app/theme';
 
 export default function MyApp(props: AppProps): JSX.Element {
@@ -29,9 +29,9 @@ export default function MyApp(props: AppProps): JSX.Element {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <FavouritesProvider>
+        <MyGifsProvider>
           <Component {...pageProps} />
-        </FavouritesProvider>
+        </MyGifsProvider>
       </ThemeProvider>
     </React.Fragment>
   );

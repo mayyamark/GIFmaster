@@ -4,10 +4,10 @@ import { useDropzone } from 'react-dropzone';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
 
 import Layout from '@app/components/molecules/Layout/Layout';
 import generateFormData from '@app/utils/generate-formdata';
-import { Button } from '@material-ui/core';
 
 interface Props {
   endpointUrl: string;
@@ -15,7 +15,6 @@ interface Props {
 
 // add tags https://developers.giphy.com/docs/api/endpoint#upload
 const UploadPage: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
-  console.log(endpointUrl);
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
