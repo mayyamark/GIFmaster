@@ -15,6 +15,7 @@ interface RandomProps extends AppProps {
 export default function Random(props: RandomProps): JSX.Element {
   return <RandomPage {...props} />;
 }
+
 export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
   return {
     props: {
