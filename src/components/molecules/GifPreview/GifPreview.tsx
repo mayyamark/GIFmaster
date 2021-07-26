@@ -9,7 +9,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import { useFavourites } from '@app/context/FavouritesContext';
 import { GIFObject } from '@app/generic-types';
-import { explainRaiting } from '@app/utils/actions';
+import explainRaiting from '@app/utils/explain-raitings';
 import useStyles from './GifPreview.styles';
 
 interface Props {
