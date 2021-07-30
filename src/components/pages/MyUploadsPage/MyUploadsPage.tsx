@@ -5,21 +5,15 @@ import { useMyGifs } from '@app/context/MyGifsContext';
 
 interface Props {
   getMyUploadsEndpointUrl: (ids: string) => string;
-  randomGifEndpointUrl: string;
 }
 
 const MyUploadsPage: React.FC<Props> = ({
   getMyUploadsEndpointUrl,
-  randomGifEndpointUrl,
 }): JSX.Element => {
   const { uploads } = useMyGifs();
 
   return (
-    <MyGifsWrapper
-      gifIds={uploads}
-      getEndpointUrl={getMyUploadsEndpointUrl}
-      randomGifEndpointUrl={randomGifEndpointUrl}
-    />
+    <MyGifsWrapper gifIds={uploads} getEndpointUrl={getMyUploadsEndpointUrl} />
   );
 };
 

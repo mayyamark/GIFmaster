@@ -1,13 +1,15 @@
-import React, { useState, useCallback } from 'react';
-import { useDropzone } from 'react-dropzone';
+import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import { useDropzone, FileRejection } from 'react-dropzone';
 
 import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 import Layout from '@app/components/molecules/Layout/Layout';
+import UploadPreview from '@app/components/molecules/UploadPreview/UploadPreview';
 import generateFormData from '@app/utils/generate-formdata';
+import { useMyGifs } from '@app/context/MyGifsContext';
+import UploadInput from '@app/components/atoms/UploadInput/UploadInput';
 
 interface Props {
   endpointUrl: string;
@@ -15,19 +17,64 @@ interface Props {
 
 // add tags https://developers.giphy.com/docs/api/endpoint#upload
 const UploadPage: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
-  const [file, setFile] = useState(null);
+  const { changeUploads } = useMyGifs();
+
+  const [file, setFile] = useState<File | null | undefined>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [errorFiles, setErrorFiles] = useState<
+    FileRejection[] | null | undefined
+  >(null);
 
   const onDrop = useCallback((acceptedFiles) => {
     setFile(acceptedFiles[0]);
   }, []);
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-  });
+  const { getRootProps, getInputProps, fileRejections, isDragActive } =
+    useDropzone({
+      accept: 'image/gif',
+      maxFiles: 1,
+      onDrop,
+    });
 
-  const handleClick = useCallback(async () => {
+  useEffect(() => {
+    if (fileRejections.length > 0) {
+      setErrorFiles(fileRejections);
+    }
+  }, [fileRejections]);
+
+  // Test this
+  const fileRejectionItems = useMemo(
+    () =>
+      errorFiles && errorFiles.length > 0 ? (
+        <div>
+          <p>Only one GIF is allowed! Choose between:</p>
+          {errorFiles.map(({ file: errorFile }) => {
+            console.log(file, 'inside');
+            return (
+              <li key={errorFile.name}>
+                <p>{errorFile.name}</p>{' '}
+                <CardMedia
+                  component='img'
+                  src={window.URL.createObjectURL(errorFile)}
+                  style={{
+                    border: 'none',
+                    width: '30%',
+                  }}
+                  onClick={() => {
+                    setFile(errorFile);
+                    setErrorFiles(null);
+                  }}
+                />
+              </li>
+            );
+          })}
+        </div>
+      ) : null,
+    [errorFiles, file]
+  );
+
+  const handleUpload = useCallback(async () => {
     if (file) {
       try {
         setLoading(true);
@@ -39,18 +86,19 @@ const UploadPage: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
         const json = await response.json();
 
         if (response.status === 200) {
-          // save to localStorage
-          localStorage.setItem('uploads', json.data.id);
+          changeUploads(json.data.id);
+          // TODO: Add snackbar
         } else {
           setError(true);
         }
       } catch (err) {
         setError(err);
       } finally {
+        setFile(null);
         setLoading(false);
       }
     }
-  }, [file, endpointUrl]);
+  }, [file, endpointUrl, changeUploads]);
 
   if (error) {
     return <Typography>Error!</Typography>;
@@ -60,39 +108,19 @@ const UploadPage: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
     <Layout>
       <Box {...getRootProps()} style={{ border: '1px solid black' }}>
         {!file ? (
-          <>
-            <input {...getInputProps()} />
-            {isDragActive ? (
-              <Typography>Drop the files here ...</Typography>
-            ) : (
-              <Typography>
-                Drag and drop a file here, or click to select file
-              </Typography>
-            )}
-          </>
+          <UploadInput
+            getInputProps={getInputProps}
+            isDragActive={isDragActive}
+          />
         ) : (
-          <>
-            <CardMedia
-              component='img'
-              src={window.URL.createObjectURL(file)}
-              style={{
-                border: 'none',
-                height: '100%',
-              }}
-            />
-            <Button variant='outlined' disabled={!file} onClick={handleClick}>
-              Upload
-            </Button>
-            <Button
-              variant='outlined'
-              disabled={!file}
-              onClick={() => setFile(null)}
-            >
-              Pick another one
-            </Button>
-          </>
+          <UploadPreview
+            file={file}
+            handleUpload={handleUpload}
+            handleReset={() => setFile(null)}
+          />
         )}
       </Box>
+      {fileRejectionItems}
       {loading && <Typography>Loading...</Typography>}
     </Layout>
   );

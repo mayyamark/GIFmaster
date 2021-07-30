@@ -34,7 +34,7 @@ const useFetch = (endpointUrl: string): ResponceData => {
               isArray(json.data) ? setData(json.data) : setData([json.data]);
             }
 
-            if (json.meta.status > 400) {
+            if (json.meta.status >= 400) {
               setError(true);
             }
           }
