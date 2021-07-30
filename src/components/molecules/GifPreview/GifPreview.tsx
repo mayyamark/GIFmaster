@@ -61,11 +61,17 @@ const GifPreview: React.FC<Props> = ({ gif }) => {
         src={gif?.images.preview_gif.url}
         alt={gif?.title}
       />
-      <Tooltip arrow title={explainRaiting(gif.rating).title} placement='right'>
-        <Typography className={classes.raiting}>
-          Raiting: {gif.rating}
-        </Typography>
-      </Tooltip>
+      {gif.rating && (
+        <Tooltip
+          arrow
+          title={explainRaiting(gif.rating).title}
+          placement='right'
+        >
+          <Typography className={classes.raiting}>
+            Raiting: {gif.rating}
+          </Typography>
+        </Tooltip>
+      )}
 
       <Link underline='none' href={gif.url} target='_blank'>
         View in GIPHY
