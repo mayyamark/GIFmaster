@@ -5,12 +5,10 @@ import { useMyGifs } from '@app/context/MyGifsContext';
 
 interface Props {
   getFavouritesEndpointUrl: (ids: string) => string;
-  randomGifEndpointUrl: string;
 }
 
 const FavouritesPage: React.FC<Props> = ({
   getFavouritesEndpointUrl,
-  randomGifEndpointUrl,
 }): JSX.Element => {
   const { favourites } = useMyGifs();
 
@@ -18,7 +16,6 @@ const FavouritesPage: React.FC<Props> = ({
     <MyGifsWrapper
       gifIds={favourites}
       getEndpointUrl={getFavouritesEndpointUrl}
-      randomGifEndpointUrl={randomGifEndpointUrl}
     />
   );
 };

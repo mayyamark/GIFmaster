@@ -2,35 +2,35 @@ import React, { useState, useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
 
 import GifsLayout from '@app/components/organisms/GifsLayout/GifsLayout';
-import SingleGifLayout from '@app/components/organisms/SingleGifLayout/SingleGifLayout';
+import Link from 'next/link';
 
 interface Props {
   gifIds: string;
   getEndpointUrl: (ids: string) => string;
-  randomGifEndpointUrl: string;
 }
 
 const MyGifsWrapper: React.FC<Props> = ({
   gifIds,
   getEndpointUrl,
-  randomGifEndpointUrl,
 }): JSX.Element => {
   const [endpoint, setEndpoint] = useState<string | null>(null);
 
   useEffect(() => {
     if (gifIds) {
       setEndpoint(getEndpointUrl(gifIds));
-    } else {
-      setEndpoint(randomGifEndpointUrl);
+    } else if (gifIds === '') {
+      setEndpoint('');
     }
-  }, [gifIds, getEndpointUrl, randomGifEndpointUrl]);
+  }, [gifIds, setEndpoint, getEndpointUrl]);
 
-  if (!endpoint) {
+  if (endpoint === null) {
     return <Typography>Loading...</Typography>;
   }
 
-  return endpoint === randomGifEndpointUrl ? (
-    <SingleGifLayout endpointUrl={endpoint} />
+  return endpoint === '' ? (
+    <div>
+      No gifs!<Link href='/random-gif'>Click to see a random gif!</Link>
+    </div>
   ) : (
     <GifsLayout endpointUrl={endpoint} />
   );
