@@ -4,6 +4,7 @@ import Box from '@material-ui/core/Box';
 import CardMedia from '@material-ui/core/CardMedia';
 
 import Layout from '@app/components/molecules/Layout/Layout';
+import Loader from '@app/components/atoms/Loader/Loader';
 import Modal from '@app/components/molecules/Modal/Modal';
 import GifPreview from '@app/components/molecules/GifPreview/GifPreview';
 import { GIFObject } from '@app/generic-types';
@@ -28,38 +29,40 @@ const GifsLayout: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
 
   return (
     <Layout>
-      <Box className={classes.container}>
-        {data?.map((gif, index) => {
-          return (
-            <CardMedia
-              key={gif.id + index}
-              component='img'
-              src={gif.images.preview_gif.url}
-              alt={gif.title}
-              onClick={() => {
-                setOpenModal(true);
-                setGifToPreview(gif);
+      {loading ? (
+        <Loader showLoader={loading} />
+      ) : (
+        <Box className={classes.container}>
+          {data?.map((gif, index) => {
+            return (
+              <CardMedia
+                key={gif.id + index}
+                component='img'
+                src={gif.images.preview_gif.url}
+                alt={gif.title}
+                onClick={() => {
+                  setOpenModal(true);
+                  setGifToPreview(gif);
+                }}
+                className={classes.gif}
+              />
+            );
+          })}
+
+          {gifToPreview && (
+            <Modal
+              extendStyles={{ content: classes.modalContent }}
+              open={openModal}
+              handleClose={() => {
+                setOpenModal(false);
+                setGifToPreview(null);
               }}
-              className={classes.gif}
-            />
-          );
-        })}
-
-        {gifToPreview && (
-          <Modal
-            extendStyles={{ content: classes.modalContent }}
-            open={openModal}
-            handleClose={() => {
-              setOpenModal(false);
-              setGifToPreview(null);
-            }}
-          >
-            <GifPreview gif={gifToPreview} />
-          </Modal>
-        )}
-
-        {loading && <Typography>Loading...</Typography>}
-      </Box>
+            >
+              <GifPreview gif={gifToPreview} />
+            </Modal>
+          )}
+        </Box>
+      )}
     </Layout>
   );
 };

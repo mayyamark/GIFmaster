@@ -7,6 +7,7 @@ import Layout from '@app/components/molecules/Layout/Layout';
 import GifPreview from '@app/components/molecules/GifPreview/GifPreview';
 import useFetch from '@app/hooks/useFetch/useFetch';
 import useStyles from './SingleGifLayout.styles';
+import Loader from '@app/components/atoms/Loader/Loader';
 
 interface Props {
   endpointUrl: string;
@@ -23,7 +24,7 @@ const SingleGifLayout: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
   return (
     <Layout>
       {loading ? (
-        <Typography>Loading...</Typography>
+        <Loader showLoader={loading} />
       ) : data ? (
         <Box className={classes.container}>
           <GifPreview gif={data[0]} />

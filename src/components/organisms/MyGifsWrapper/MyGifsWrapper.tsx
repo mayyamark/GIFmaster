@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Typography from '@material-ui/core/Typography';
 
 import NoGifsToShow from '@app/components/molecules/NoGifsToShow/NoGifsToShow';
 import GifsLayout from '@app/components/organisms/GifsLayout/GifsLayout';
+import Loader from '@app/components/atoms/Loader/Loader';
 
 interface Props {
   gifIds: string;
@@ -24,7 +24,7 @@ const MyGifsWrapper: React.FC<Props> = ({
   }, [gifIds, setEndpoint, getEndpointUrl]);
 
   if (endpoint === null) {
-    return <Typography>Loading...</Typography>;
+    return <Loader showLoader={true} />;
   }
 
   return endpoint === '' ? (

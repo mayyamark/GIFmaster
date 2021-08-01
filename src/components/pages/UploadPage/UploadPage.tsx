@@ -7,9 +7,10 @@ import Typography from '@material-ui/core/Typography';
 
 import Layout from '@app/components/molecules/Layout/Layout';
 import UploadPreview from '@app/components/molecules/UploadPreview/UploadPreview';
+import UploadInput from '@app/components/atoms/UploadInput/UploadInput';
+import Loader from '@app/components/atoms/Loader/Loader';
 import generateFormData from '@app/utils/generate-formdata';
 import { useMyGifs } from '@app/context/MyGifsContext';
-import UploadInput from '@app/components/atoms/UploadInput/UploadInput';
 
 interface Props {
   endpointUrl: string;
@@ -121,7 +122,7 @@ const UploadPage: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
         )}
       </Box>
       {fileRejectionItems}
-      {loading && <Typography>Loading...</Typography>}
+      {loading && <Loader showLoader={loading} />}
     </Layout>
   );
 };
