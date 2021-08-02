@@ -3,7 +3,6 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import CardMedia from '@material-ui/core/CardMedia';
 
-import Layout from '@app/components/molecules/Layout/Layout';
 import Loader from '@app/components/atoms/Loader/Loader';
 import Modal from '@app/components/molecules/Modal/Modal';
 import GifPreview from '@app/components/molecules/GifPreview/GifPreview';
@@ -28,7 +27,7 @@ const GifsLayout: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
   }
 
   return (
-    <Layout>
+    <>
       {loading ? (
         <Loader showLoader={loading} />
       ) : (
@@ -63,7 +62,7 @@ const GifsLayout: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
           )}
         </Box>
       )}
-    </Layout>
+    </>
   );
 };
 

@@ -3,7 +3,6 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 
-import Layout from '@app/components/molecules/Layout/Layout';
 import GifPreview from '@app/components/molecules/GifPreview/GifPreview';
 import useFetch from '@app/hooks/useFetch/useFetch';
 import useStyles from './SingleGifLayout.styles';
@@ -22,7 +21,7 @@ const SingleGifLayout: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
   }
 
   return (
-    <Layout>
+    <>
       {loading ? (
         <Loader showLoader={loading} />
       ) : data ? (
@@ -33,7 +32,7 @@ const SingleGifLayout: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
           </Button>
         </Box>
       ) : null}
-    </Layout>
+    </>
   );
 };
 

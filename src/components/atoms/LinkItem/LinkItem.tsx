@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from '@material-ui/core/Link';
+import Link from 'next/link';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -18,6 +18,7 @@ interface Props {
   extendStyles?: ExtendStyles;
   // eslint-disable-next-line @typescript-eslint/ban-types
   IconComponent: OverridableComponent<SvgIconTypeMap<{}, 'svg'>>;
+  handleClick: () => void;
 }
 
 const LinkItem: React.FC<Props> = ({
@@ -25,19 +26,14 @@ const LinkItem: React.FC<Props> = ({
   label,
   IconComponent,
   extendStyles,
+  handleClick,
   ...other
 }): JSX.Element => {
   const classes = useStyles();
 
   return (
-    <Link
-      href={href}
-      {...other}
-      className={extendStyles?.content}
-      color='inherit'
-      underline='none'
-    >
-      <ListItem button>
+    <Link href={href} passHref {...other}>
+      <ListItem button onClick={handleClick} className={extendStyles?.content}>
         <ListItemIcon>
           <IconComponent className={classes.icon} />
         </ListItemIcon>

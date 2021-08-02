@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import NoGifsToShow from '@app/components/molecules/NoGifsToShow/NoGifsToShow';
 import GifsLayout from '@app/components/organisms/GifsLayout/GifsLayout';
-import Layout from '@app/components/molecules/Layout/Layout';
 import Loader from '@app/components/atoms/Loader/Loader';
 
 interface Props {
@@ -25,11 +24,7 @@ const MyGifsWrapper: React.FC<Props> = ({
   }, [gifIds, setEndpoint, getEndpointUrl]);
 
   if (endpoint === null) {
-    return (
-      <Layout>
-        <Loader showLoader={true} />;
-      </Layout>
-    );
+    return <Loader showLoader={true} />;
   }
 
   return endpoint === '' ? (

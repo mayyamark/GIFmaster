@@ -6,6 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 import { MyGifsProvider } from '@app/context/MyGifsContext';
 import theme from '@app/theme';
+import Layout from '@app/components/molecules/Layout/Layout';
 
 export default function MyApp(props: AppProps): JSX.Element {
   const { Component, pageProps } = props;
@@ -30,7 +31,9 @@ export default function MyApp(props: AppProps): JSX.Element {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <MyGifsProvider>
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </MyGifsProvider>
       </ThemeProvider>
     </React.Fragment>

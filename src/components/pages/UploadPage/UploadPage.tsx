@@ -5,7 +5,6 @@ import Box from '@material-ui/core/Box';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
-import Layout from '@app/components/molecules/Layout/Layout';
 import UploadPreview from '@app/components/molecules/UploadPreview/UploadPreview';
 import UploadInput from '@app/components/atoms/UploadInput/UploadInput';
 import Loader from '@app/components/atoms/Loader/Loader';
@@ -106,7 +105,7 @@ const UploadPage: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
   }
 
   return (
-    <Layout>
+    <>
       <Box {...getRootProps()} style={{ border: '1px solid black' }}>
         {!file ? (
           <UploadInput
@@ -123,7 +122,7 @@ const UploadPage: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
       </Box>
       {fileRejectionItems}
       {loading && <Loader showLoader={loading} />}
-    </Layout>
+    </>
   );
 };
 

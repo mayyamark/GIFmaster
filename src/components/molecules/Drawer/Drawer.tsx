@@ -85,6 +85,7 @@ const Drawer: React.FC<Props> = ({ open, handleClose }): JSX.Element => {
             href={href}
             key={label}
             label={label}
+            handleClick={handleClose}
             IconComponent={IconComponent}
             extendStyles={{
               content: label.includes('random')
