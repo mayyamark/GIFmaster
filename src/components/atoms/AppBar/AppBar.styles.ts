@@ -20,6 +20,7 @@ const useStyles = makeStyles(() => ({
   title: {
     color: COLORS.white,
     fontWeight: 'bold',
+    cursor: 'pointer',
   },
 
   openDrawerButton: {
