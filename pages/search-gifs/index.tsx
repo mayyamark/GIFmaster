@@ -21,7 +21,7 @@ export default function Search(props: FavouritesProps): JSX.Element {
     <SearchPage
       {...restProps}
       getSearchEndpointUrl={(keyword) =>
-        `${baseUrl}/search?api_key=${apiKey}&q=${keyword}`
+        `${baseUrl}/search?api_key=${apiKey}&q=${keyword}&limit=40`
       }
     />
   );

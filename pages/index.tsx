@@ -18,7 +18,7 @@ export default function Trending(props: TrendingProps): JSX.Element {
 export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
   return {
     props: {
-      endpointUrl: `${process.env.GIPHY_QUERY_BASE_URL}/trending?api_key=${process.env.GIPHY_API_KEY}`,
+      endpointUrl: `${process.env.GIPHY_QUERY_BASE_URL}/trending?api_key=${process.env.GIPHY_API_KEY}&limit=40`,
     },
   };
 }

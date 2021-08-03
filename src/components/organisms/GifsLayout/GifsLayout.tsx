@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -20,49 +21,51 @@ const GifsLayout: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
   const [openModal, setOpenModal] = useState(false);
   const [gifToPreview, setGifToPreview] = useState<GIFObject | null>(null);
 
-  const { loading, error, data } = useFetch(endpointUrl);
+  const { loading, error, data, fetchMore } = useFetch(endpointUrl);
 
   if (error) {
     return <Typography>Error!</Typography>;
   }
 
   return (
-    <>
-      {loading ? (
-        <Loader showLoader={loading} />
-      ) : (
-        <Box className={classes.container}>
-          {data?.map((gif, index) => {
-            return (
-              <CardMedia
-                key={gif.id + index}
-                component='img'
-                src={gif.images.preview_gif.url}
-                alt={gif.title}
-                onClick={() => {
-                  setOpenModal(true);
-                  setGifToPreview(gif);
-                }}
-                className={classes.gif}
-              />
-            );
-          })}
-
-          {gifToPreview && (
-            <Modal
-              extendStyles={{ content: classes.modalContent }}
-              open={openModal}
-              handleClose={() => {
-                setOpenModal(false);
-                setGifToPreview(null);
+    <InfiniteScroll
+      dataLength={data?.length || 0}
+      next={fetchMore}
+      hasMore={true}
+      loader={<Loader showLoader={loading} />}
+      endMessage={<h4>Nothing more to show</h4>}
+    >
+      <Box className={classes.container}>
+        {data?.map((gif, index) => {
+          return (
+            <CardMedia
+              key={gif.id + index}
+              component='img'
+              src={gif.images.preview_gif.url}
+              alt={gif.title}
+              onClick={() => {
+                setOpenModal(true);
+                setGifToPreview(gif);
               }}
-            >
-              <GifPreview gif={gifToPreview} />
-            </Modal>
-          )}
-        </Box>
-      )}
-    </>
+              className={classes.gif}
+            />
+          );
+        })}
+
+        {gifToPreview && (
+          <Modal
+            extendStyles={{ content: classes.modalContent }}
+            open={openModal}
+            handleClose={() => {
+              setOpenModal(false);
+              setGifToPreview(null);
+            }}
+          >
+            <GifPreview gif={gifToPreview} />
+          </Modal>
+        )}
+      </Box>
+    </InfiniteScroll>
   );
 };
 
