@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MyGifsWrapper from '@app/components/organisms/MyGifsWrapper/MyGifsWrapper';
+import GifsWithChangableEndpoint from '@app/components/organisms/GifsWithChangableEndpoint/GifsWithChangableEndpoint';
 import { useMyGifs } from '@app/context/MyGifsContext';
 
 interface Props {
@@ -13,7 +13,10 @@ const MyUploadsPage: React.FC<Props> = ({
   const { uploads } = useMyGifs();
 
   return (
-    <MyGifsWrapper gifIds={uploads} getEndpointUrl={getMyUploadsEndpointUrl} />
+    <GifsWithChangableEndpoint
+      endpointSubstring={uploads}
+      getEndpointUrl={getMyUploadsEndpointUrl}
+    />
   );
 };
 

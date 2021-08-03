@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     [theme.breakpoints.up('xl')]: {
-      margin: theme.spacing(16, 28),
+      margin: theme.spacing(0),
       columnCount: 5,
     },
   },

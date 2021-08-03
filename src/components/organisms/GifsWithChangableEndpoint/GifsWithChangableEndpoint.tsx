@@ -5,23 +5,23 @@ import GifsLayout from '@app/components/organisms/GifsLayout/GifsLayout';
 import Loader from '@app/components/atoms/Loader/Loader';
 
 interface Props {
-  gifIds: string;
+  endpointSubstring: string;
   getEndpointUrl: (ids: string) => string;
 }
 
-const MyGifsWrapper: React.FC<Props> = ({
-  gifIds,
+const GifsWithChangableEndpoint: React.FC<Props> = ({
+  endpointSubstring,
   getEndpointUrl,
 }): JSX.Element => {
   const [endpoint, setEndpoint] = useState<string | null>(null);
 
   useEffect(() => {
-    if (gifIds) {
-      setEndpoint(getEndpointUrl(gifIds));
-    } else if (gifIds === '') {
+    if (endpointSubstring) {
+      setEndpoint(getEndpointUrl(endpointSubstring));
+    } else if (endpointSubstring === '') {
       setEndpoint('');
     }
-  }, [gifIds, setEndpoint, getEndpointUrl]);
+  }, [endpointSubstring, setEndpoint, getEndpointUrl]);
 
   if (endpoint === null) {
     return <Loader showLoader={true} />;
@@ -34,4 +34,4 @@ const MyGifsWrapper: React.FC<Props> = ({
   );
 };
 
-export default MyGifsWrapper;
+export default GifsWithChangableEndpoint;
