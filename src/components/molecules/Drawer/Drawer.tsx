@@ -75,7 +75,7 @@ const Drawer: React.FC<Props> = ({ open, handleClose }): JSX.Element => {
       <Divider className={classes.divider} />
 
       <Hidden smUp>
-        <SearchInput />
+        <SearchInput onKeyPressCallback={handleClose} />
         <Divider className={classes.divider} />
       </Hidden>
 
