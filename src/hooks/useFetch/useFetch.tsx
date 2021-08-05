@@ -5,7 +5,6 @@ import { GIFObject } from '@app/generic-types';
 interface ResponseData {
   error: boolean;
   loading: boolean;
-  // hasMoreData: boolean;
   data: GIFObject[] | null;
   triggerFetch: () => void;
   fetchMore: () => void;
@@ -16,7 +15,6 @@ const useFetch = (endpointUrl: string): ResponseData => {
   const [error, setError] = useState<boolean>(false);
   const [data, setData] = useState<GIFObject[] | null>(null);
   const [offset, setOffset] = useState(0);
-  // const [hasMoreData, setHasMoreData] = useState(false);
   const [fetchFlag, setFetchFlag] = useState(1);
 
   const triggerFetch = useCallback(() => {
@@ -37,7 +35,6 @@ const useFetch = (endpointUrl: string): ResponseData => {
 
       if (json.data) {
         setData((prev) => (prev ? [...prev, ...json.data] : null));
-        // setHasMoreData(data.length < json.pagination.total_count);
       }
       if (json.meta.status >= 400) {
         setError(true);
@@ -63,11 +60,9 @@ const useFetch = (endpointUrl: string): ResponseData => {
             if (json.data) {
               if (isArray(json.data)) {
                 setData(json.data);
-                // data &&
-                //   setHasMoreData(data.length < json.pagination.total_count);
               } else {
+                setData([json.data]);
               }
-              setData([json.data]);
             }
 
             if (json.meta.status >= 400) {
@@ -91,7 +86,6 @@ const useFetch = (endpointUrl: string): ResponseData => {
     loading,
     error,
     data,
-    // hasMoreData,
     triggerFetch,
     fetchMore,
   };
