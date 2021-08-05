@@ -1,7 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) => ({
-  container: {
+  wrapper: {
     [theme.breakpoints.down('md')]: {
       marginTop: theme.spacing(8),
     },

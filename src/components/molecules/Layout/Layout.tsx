@@ -18,7 +18,7 @@ const Header: React.FunctionComponent<Props> = ({ children }) => {
     <>
       <AppBar handleOpenDrawer={() => setOpenDrawer(true)} />
       <Drawer open={openDrawer} handleClose={() => setOpenDrawer(false)} />
-      <Container className={classes.container}>
+      <Container className={classes.wrapper}>
         <>{children}</>
       </Container>
     </>
