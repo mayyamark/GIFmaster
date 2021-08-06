@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 
+import STORED_DATA_ACTIONS from '@app/constants/stored-data-actions';
+
 interface LocalStorageResult {
   storedData: string;
-  changeStoredData: (id: string) => void;
+  changeStoredData: (id: string) => string;
 }
 
 const useLocalStorage = (key: string): LocalStorageResult => {
@@ -32,6 +34,10 @@ const useLocalStorage = (key: string): LocalStorageResult => {
         ? idsArray.filter((i) => i !== id).join(',')
         : [...idsArray, id].join(',');
     });
+
+    return storedData.split(',').find((i) => i === id)
+      ? STORED_DATA_ACTIONS.itemRemoved
+      : STORED_DATA_ACTIONS.itemAdded;
   };
 
   return {

@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: '100%',
   },
 
-  favouriteIcon: {
+  heartIcon: {
     position: 'absolute',
     fontSize: '80px',
   },

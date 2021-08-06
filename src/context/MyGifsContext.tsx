@@ -5,15 +5,15 @@ import useLocalStorage from '@app/hooks/useLocalStorage/useLocalStorage';
 interface MyGifsContext {
   favourites: string;
   uploads: string;
-  changeFavourites: (id: string) => void;
-  changeUploads: (id: string) => void;
+  changeFavourites: (id: string) => string;
+  changeUploads: (id: string) => string;
 }
 
 const DEFAULT_CONTEXT: MyGifsContext = {
   favourites: '',
   uploads: '',
-  changeFavourites: () => {},
-  changeUploads: () => {},
+  changeFavourites: () => '',
+  changeUploads: () => '',
 };
 
 const MyGifsContext = createContext(DEFAULT_CONTEXT);

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import moment from 'moment';
 import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
 import CardMedia from '@material-ui/core/CardMedia';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteTwoTone from '@material-ui/icons/FavoriteTwoTone';
 import Fade from '@material-ui/core/Fade';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
@@ -11,6 +12,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import { useMyGifs } from '@app/context/MyGifsContext';
 import { GIFObject } from '@app/generic-types';
+import STORED_DATA_ACTIONS from '@app/constants/stored-data-actions';
 import explainRaiting from '@app/utils/explain-raitings';
 import useStyles from './GifPreview.styles';
 
@@ -21,17 +23,35 @@ interface Props {
 const GifPreview: React.FC<Props> = ({ gif }) => {
   const classes = useStyles();
 
-  const [showFavIcon, setShowFavIcon] = useState(false);
+  const [showFavouriteIcon, setShowFavouriteIcon] = useState(false);
+  const [showUnfavouriteIcon, setShowUnfavouriteIcon] = useState(false);
+
   const { changeFavourites } = useMyGifs();
 
   useEffect(() => {
     const timeout = setInterval(() => {
-      if (showFavIcon) {
-        setShowFavIcon(false);
+      if (showFavouriteIcon) {
+        setShowFavouriteIcon(false);
       }
     }, 600);
     return () => clearInterval(timeout);
-  }, [showFavIcon]);
+  }, [showFavouriteIcon]);
+
+  useEffect(() => {
+    const timeout = setInterval(() => {
+      if (showUnfavouriteIcon) {
+        setShowUnfavouriteIcon(false);
+      }
+    }, 600);
+    return () => clearInterval(timeout);
+  }, [showUnfavouriteIcon]);
+
+  const handleDoubleClick = useCallback(() => {
+    const favouriteAction = changeFavourites(gif.id);
+    favouriteAction === STORED_DATA_ACTIONS.itemAdded
+      ? setShowFavouriteIcon(true)
+      : setShowUnfavouriteIcon(true);
+  }, [changeFavourites, gif.id]);
 
   return (
     <Box className={classes.root}>
@@ -71,19 +91,15 @@ const GifPreview: React.FC<Props> = ({ gif }) => {
         <CardMedia
           component='img'
           className={classes.gif}
-          onDoubleClick={() => {
-            changeFavourites(gif.id);
-            setShowFavIcon(true);
-          }}
+          onDoubleClick={handleDoubleClick}
           src={gif?.images.preview_gif.url}
           alt={gif?.title}
         />
-        <Fade in={showFavIcon} timeout={600}>
-          <FavoriteIcon
-            className={classes.favouriteIcon}
-            stroke='white'
-            stroke-width={1}
-          />
+        <Fade in={showFavouriteIcon} timeout={600}>
+          <FavoriteIcon className={classes.heartIcon} />
+        </Fade>
+        <Fade in={showUnfavouriteIcon} timeout={600}>
+          <FavoriteTwoTone className={classes.heartIcon} />
         </Fade>
       </Box>
       {gif.rating && (

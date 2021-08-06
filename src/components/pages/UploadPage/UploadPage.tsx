@@ -87,7 +87,7 @@ const UploadPage: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
 
         if (response.status === 200) {
           changeUploads(json.data.id);
-          // TODO: Add snackbar
+          // TODO: Add snackbar => upon the action string
         } else {
           setError(true);
         }
