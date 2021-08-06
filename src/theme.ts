@@ -2,16 +2,52 @@ import { createTheme } from '@material-ui/core';
 
 export const COLORS = {
   black: '#000000',
-  white: '#ffffff',
+  white: '#FFFFFF',
   blackWithOpacity: 'rgba(0, 0, 0, 0.87)',
   lightGray: '#909090',
   darkGray: '#404040',
 };
 
+export const cairoFontFamily = ['Cairo', 'sans-serif'].join(', ');
+
 const theme = createTheme({
   palette: {
     primary: {
       main: '#FFFFFF',
+    },
+  },
+
+  typography: {
+    fontFamily: cairoFontFamily,
+    h1: {
+      fontFamily: cairoFontFamily,
+    },
+    h2: {
+      fontFamily: cairoFontFamily,
+    },
+    h3: {
+      fontFamily: cairoFontFamily,
+    },
+    h4: {
+      fontFamily: cairoFontFamily,
+    },
+    h5: {
+      fontFamily: cairoFontFamily,
+    },
+    h6: {
+      fontFamily: cairoFontFamily,
+    },
+    body1: {
+      fontFamily: cairoFontFamily,
+    },
+    body2: {
+      fontFamily: cairoFontFamily,
+    },
+    button: {
+      fontFamily: cairoFontFamily,
+    },
+    subtitle1: {
+      fontFamily: cairoFontFamily,
     },
   },
 });
