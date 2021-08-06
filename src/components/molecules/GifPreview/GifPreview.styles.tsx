@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     padding: theme.spacing(2),
+    overflowY: 'scroll',
 
     '& > *': {
       marginBottom: theme.spacing(1),

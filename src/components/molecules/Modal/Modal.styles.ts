@@ -6,7 +6,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     width: '100%',
     height: '100%',
-    boxShadow: `0 12px 20px 0 ${COLORS.darkGray}`,
   },
 
   content: {
@@ -16,7 +15,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.up('md')]: {
       margin: 'auto',
       width: '600px',
-      minHeight: '600px',
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      boxShadow: `inset 0 0 0 5px ${COLORS.black}`,
+      border: `5px solid ${COLORS.white}`,
+    },
+
+    [theme.breakpoints.up('sm')]: {
+      boxShadow: `0 0 0 5px ${COLORS.black}, 0 0 0 10px ${COLORS.white}, 0 0px 18px 31px ${COLORS.blackWithOpacity}`,
     },
   },
 
@@ -30,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 
   closeIcon: {
-    color: 'gray',
+    color: COLORS.darkGray,
   },
 }));
 
