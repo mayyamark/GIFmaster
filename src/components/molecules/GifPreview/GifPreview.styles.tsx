@@ -22,15 +22,27 @@ const useStyles = makeStyles((theme: Theme) => ({
 
   userContainer: {
     display: 'flex',
+    padding: theme.spacing(0.8, 2.5),
+    margin: theme.spacing(0.8, 0),
+    borderRadius: theme.spacing(0.5),
+
+    '&:hover': {
+      boxShadow: '0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)',
+
+      '& > div': {
+        borderColor: COLORS.lightGray,
+      },
+    },
   },
 
   avatar: {
     marginRight: theme.spacing(1),
+    border: `1px solid ${COLORS.white}`,
   },
 
   user: {
     fontWeight: 500,
-    color: COLORS.black,
+    color: COLORS.darkGray,
   },
 
   username: {
@@ -57,6 +69,15 @@ const useStyles = makeStyles((theme: Theme) => ({
 
   raiting: {
     cursor: 'help',
+  },
+
+  externalLink: {
+    color: COLORS.lightGray,
+    fontWeight: 700,
+
+    '&:hover': {
+      color: COLORS.darkGray,
+    },
   },
 }));
 

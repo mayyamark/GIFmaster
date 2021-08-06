@@ -114,7 +114,12 @@ const GifPreview: React.FC<Props> = ({ gif }) => {
         </Tooltip>
       )}
 
-      <Link underline='none' href={gif.url} target='_blank'>
+      <Link
+        underline='none'
+        href={gif.url}
+        target='_blank'
+        className={classes.externalLink}
+      >
         View in GIPHY
       </Link>
     </Box>

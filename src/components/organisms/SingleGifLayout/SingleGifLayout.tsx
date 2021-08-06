@@ -27,7 +27,11 @@ const SingleGifLayout: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
       ) : data ? (
         <Box className={classes.container}>
           <GifPreview gif={data[0]} />
-          <Button variant='outlined' onClick={triggerFetch}>
+          <Button
+            variant='outlined'
+            onClick={triggerFetch}
+            className={classes.button}
+          >
             Another one
           </Button>
         </Box>
