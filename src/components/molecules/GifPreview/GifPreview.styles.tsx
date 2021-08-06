@@ -38,9 +38,21 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: COLORS.lightGray,
   },
 
+  gifContainer: {
+    width: '300px',
+    position: 'relative',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
   gif: {
-    maxWidth: '70%',
-    marginTop: theme.spacing(1),
+    width: '100%',
+  },
+
+  favouriteIcon: {
+    position: 'absolute',
+    fontSize: '80px',
   },
 
   raiting: {

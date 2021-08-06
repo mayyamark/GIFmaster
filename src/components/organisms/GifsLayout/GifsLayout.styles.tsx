@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: 'auto',
     padding: theme.spacing(1, 0),
+    cursor: 'pointer',
   },
 
   modalContent: {
