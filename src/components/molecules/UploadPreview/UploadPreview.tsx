@@ -21,9 +21,15 @@ const UploadPreview: React.FC<Props> = ({
         style={{
           border: 'none',
           height: '100%',
+          marginBottom: 16,
         }}
       />
-      <Button variant='outlined' disabled={!file} onClick={handleUpload}>
+      <Button
+        variant='outlined'
+        disabled={!file}
+        onClick={handleUpload}
+        style={{ marginRight: 8 }}
+      >
         Upload
       </Button>
       <Button variant='outlined' disabled={!file} onClick={handleReset}>

@@ -18,10 +18,10 @@ const UploadInput: React.FC<Props> = ({
         <Typography>Drop the files here ...</Typography>
       ) : (
         <>
-          <Typography>
+          <Typography style={{ fontSize: '24px' }}>
             Drag and drop a file here, or click to select file
           </Typography>
-          <em>(Only *.gif files will be accepted)</em>
+          <em style={{ color: 'gray' }}>(Only *.gif files will be accepted)</em>
         </>
       )}
     </>
