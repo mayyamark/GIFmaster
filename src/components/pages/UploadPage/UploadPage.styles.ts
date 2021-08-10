@@ -16,6 +16,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   withBorder: {
     border: `1px dotted ${COLORS.blackWithOpacity}`,
   },
+
+  title: {
+    fontWeight: 600,
+    marginBottom: theme.spacing(2),
+  },
 }));
 
 export default useStyles;

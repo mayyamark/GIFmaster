@@ -82,7 +82,7 @@ const UploadPage: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
 
   return (
     <Box className={classes.root}>
-      <Typography variant='h3' style={{ fontWeight: 600, marginBottom: 16 }}>
+      <Typography variant='h3' className={classes.title}>
         You are about to upload your awesome GIF!
       </Typography>
 
