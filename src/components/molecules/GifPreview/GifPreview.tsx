@@ -88,13 +88,19 @@ const GifPreview: React.FC<Props> = ({ gif }) => {
         )}
       </Box>
       <Box className={classes.gifContainer}>
-        <CardMedia
-          component='img'
-          className={classes.gif}
-          onDoubleClick={handleDoubleClick}
-          src={gif?.images.preview_gif.url}
-          alt={gif?.title}
-        />
+        <Tooltip
+          arrow
+          title='Double click the gif, to see some magic!'
+          placement='right'
+        >
+          <CardMedia
+            component='img'
+            className={classes.gif}
+            onDoubleClick={handleDoubleClick}
+            src={gif?.images.preview_gif.url}
+            alt={gif?.title}
+          />
+        </Tooltip>
         <Fade in={showFavouriteIcon} timeout={600}>
           <FavoriteIcon className={classes.heartIcon} />
         </Fade>

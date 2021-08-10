@@ -60,6 +60,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
   gif: {
     width: '100%',
+    cursor: 'pointer',
   },
 
   heartIcon: {
