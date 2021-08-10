@@ -50,6 +50,19 @@ const theme = createTheme({
       fontFamily: cairoFontFamily,
     },
   },
+
+  overrides: {
+    MuiButton: {
+      outlined: {
+        color: COLORS.black,
+
+        '&:hover': {
+          boxShadow:
+            '0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)',
+        },
+      },
+    },
+  },
 });
 
 export default theme;
