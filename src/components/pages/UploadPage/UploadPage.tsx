@@ -1,22 +1,25 @@
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useDropzone, FileRejection } from 'react-dropzone';
+import clsx from 'clsx';
 
 import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
+import RejectedFiles from '@app/components/molecules/RejectedFiles/RejectedFiles';
 import UploadPreview from '@app/components/molecules/UploadPreview/UploadPreview';
 import UploadInput from '@app/components/atoms/UploadInput/UploadInput';
 import Loader from '@app/components/atoms/Loader/Loader';
 import generateFormData from '@app/utils/generate-formdata';
 import { useMyGifs } from '@app/context/MyGifsContext';
+import useStyles from './UploadPage.styles';
 
 interface Props {
   endpointUrl: string;
 }
 
 const UploadPage: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
+  const classes = useStyles();
+
   const { changeUploads } = useMyGifs();
 
   const [file, setFile] = useState<File | null | undefined>(null);
@@ -78,75 +81,42 @@ const UploadPage: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
   }
 
   return (
-    <Box style={{ padding: '32px 0', textAlign: 'center' }}>
+    <Box className={classes.root}>
       <Typography variant='h3' style={{ fontWeight: 600, marginBottom: 16 }}>
         You are about to upload your awesome GIF!
       </Typography>
-      {/* ERRORS */}
+
       {errorFiles && errorFiles.length > 0 ? (
-        <Box>
-          <Typography style={{ fontSize: 24 }}>
-            Only <strong>one</strong> GIF is allowed! Choose between:
-          </Typography>
-          {errorFiles.map(({ file: errorFile }) => {
-            return (
-              <Box
-                key={errorFile.name}
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  margin: '16px 0',
-                  padding: '24px 0',
-                  border: '1px dotted black',
-                  cursor: 'pointer',
-                }}
-                onClick={() => {
-                  setFile(errorFile);
-                  setErrorFiles(null);
-                }}
-              >
-                <Typography style={{ marginBottom: 8 }}>
-                  {errorFile.name}
-                </Typography>{' '}
-                <CardMedia
-                  component='img'
-                  src={window.URL.createObjectURL(errorFile)}
-                  style={{
-                    border: 'none',
-                    width: '30%',
-                  }}
-                />
-              </Box>
-            );
-          })}
-          <Button
-            variant='outlined'
-            onClick={() => {
-              setFile(null);
-              setErrorFiles(null);
-            }}
-          >
-            Pick another one
-          </Button>
-        </Box>
+        <RejectedFiles
+          errorTitle='Only one GIF is allowed! Choose between:'
+          buttonText='Pick another one'
+          errorFiles={errorFiles}
+          handleClickFile={(errorFile) => {
+            setFile(errorFile);
+            setErrorFiles(null);
+          }}
+          handleClickButton={() => {
+            setFile(null);
+            setErrorFiles(null);
+          }}
+        />
       ) : (
-        // NO ERRORS
         <Box
           {...getRootProps()}
-          style={{
-            border: file ? 'none' : '1px dotted black',
-            cursor: 'pointer',
-            padding: 24,
-          }}
+          className={clsx(
+            classes.container,
+            !file ? classes.withBorder : undefined
+          )}
         >
           {!file ? (
             <UploadInput
-              getInputProps={getInputProps}
               isDragActive={isDragActive}
+              additionalText='(Only *.gif files will be accepted)'
+              getInputProps={getInputProps}
             />
           ) : (
             <UploadPreview
+              cancelButtonText='Pick another one'
               file={file}
               handleUpload={handleUpload}
               handleReset={() => setFile(null)}
@@ -154,7 +124,6 @@ const UploadPage: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
           )}
         </Box>
       )}
-      {/* {fileRejectionItems} */}
     </Box>
   );
 };

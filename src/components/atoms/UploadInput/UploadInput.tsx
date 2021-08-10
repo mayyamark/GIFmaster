@@ -1,16 +1,22 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 
+import useStyles from './UploadInput.styles';
+
 interface Props {
+  isDragActive: boolean;
+  additionalText: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getInputProps: () => any;
-  isDragActive: boolean;
 }
 
 const UploadInput: React.FC<Props> = ({
-  getInputProps,
   isDragActive,
+  additionalText,
+  getInputProps,
 }): JSX.Element => {
+  const classes = useStyles();
+
   return (
     <>
       <input {...getInputProps()} />
@@ -18,10 +24,12 @@ const UploadInput: React.FC<Props> = ({
         <Typography>Drop the files here ...</Typography>
       ) : (
         <>
-          <Typography style={{ fontSize: '24px' }}>
+          <Typography className={classes.title}>
             Drag and drop a file here, or click to select file
           </Typography>
-          <em style={{ color: 'gray' }}>(Only *.gif files will be accepted)</em>
+          {additionalText ? (
+            <em className={classes.additionalText}>{additionalText}</em>
+          ) : null}
         </>
       )}
     </>
