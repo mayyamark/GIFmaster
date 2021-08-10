@@ -51,6 +51,7 @@ interface Images {
       height: string;
       size: string;
       frames: string;
+      url: string;
     };
   original_still: ImageCommon;
   looping: {

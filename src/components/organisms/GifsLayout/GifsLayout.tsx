@@ -36,12 +36,14 @@ const GifsLayout: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
       endMessage={<h4>Nothing more to show</h4>}
     >
       <Box className={classes.container}>
-        {data?.map((gif, index) => {
+        {data?.map((gif) => {
+          const src = gif.images.preview_gif.url || gif.images.original.url;
+
           return (
             <CardMedia
-              key={gif.id + index}
+              key={gif.id}
               component='img'
-              src={gif.images.preview_gif.url}
+              src={src}
               alt={gif.title}
               onClick={() => {
                 setOpenModal(true);
