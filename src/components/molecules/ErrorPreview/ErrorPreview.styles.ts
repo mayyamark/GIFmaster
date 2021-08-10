@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: 54,
   },
 
-  nothingToShow: {
+  message: {
     fontWeight: 600,
     fontSize: 32,
   },

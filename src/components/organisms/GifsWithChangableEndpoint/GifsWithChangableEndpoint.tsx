@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import NoGifsToShow from '@app/components/molecules/NoGifsToShow/NoGifsToShow';
+import NoGifsToShow from '@app/components/molecules/ErrorPreview/ErrorPreview';
 import GifsLayout from '@app/components/organisms/GifsLayout/GifsLayout';
 import Loader from '@app/components/atoms/Loader/Loader';
 
@@ -28,7 +28,7 @@ const GifsWithChangableEndpoint: React.FC<Props> = ({
   }
 
   return endpoint === '' ? (
-    <NoGifsToShow />
+    <NoGifsToShow message='No gifs to show!' />
   ) : (
     <GifsLayout endpointUrl={endpoint} />
   );

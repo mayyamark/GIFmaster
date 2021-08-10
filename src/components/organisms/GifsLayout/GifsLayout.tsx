@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import CardMedia from '@material-ui/core/CardMedia';
 
 import Loader from '@app/components/atoms/Loader/Loader';
+import ErrorPreview from '@app/components/molecules/ErrorPreview/ErrorPreview';
 import Modal from '@app/components/molecules/Modal/Modal';
 import GifPreview from '@app/components/molecules/GifPreview/GifPreview';
 import { GIFObject } from '@app/generic-types';
@@ -24,7 +24,7 @@ const GifsLayout: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
   const { loading, error, data, fetchMore } = useFetch(endpointUrl);
 
   if (error) {
-    return <Typography>Error!</Typography>;
+    return <ErrorPreview />;
   }
 
   return (

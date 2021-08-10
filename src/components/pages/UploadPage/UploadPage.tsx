@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 
+import ErrorPreview from '@app/components/molecules/ErrorPreview/ErrorPreview';
 import RejectedFiles from '@app/components/molecules/RejectedFiles/RejectedFiles';
 import UploadPreview from '@app/components/molecules/UploadPreview/UploadPreview';
 import UploadInput from '@app/components/atoms/UploadInput/UploadInput';
@@ -73,7 +74,7 @@ const UploadPage: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
   }, [file, endpointUrl, changeUploads]);
 
   if (error) {
-    return <Typography>Error!</Typography>;
+    return <ErrorPreview />;
   }
 
   if (loading) {
