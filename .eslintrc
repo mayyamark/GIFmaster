@@ -3,7 +3,8 @@
   "env": {
     "browser": true,
     "node": true,
-    "es6": true
+    "es6": true,
+    "cypress/globals": true
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -20,13 +21,17 @@
       }
     }
   },
-  "plugins": ["import", "import", "react-hooks", "@typescript-eslint"],
+  "plugins": ["import", "import", "react-hooks", "@typescript-eslint", "cypress"],
   "extends": ["next", "next/core-web-vitals", "plugin:react/recommended", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
   "rules": {
     "react-hooks/rules-of-hooks": "error", // Ex: no conditional hooks
     "react-hooks/exhaustive-deps": "warn", // Hook dependency checks
     "react/prop-types": "off", // Using TypeScript's types instead
-    "no-undef": "error"
+    "no-undef": "error",
+    "cypress/no-assigning-return-values": "error",
+    "cypress/assertion-before-screenshot": "warn",
+    "cypress/no-force": "warn",
+    "cypress/no-async-tests": "error"
   },
   "overrides": [
     {
