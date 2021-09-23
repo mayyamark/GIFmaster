@@ -7,7 +7,7 @@ interface Props {
 }
 
 const TrendingPage: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
-  return <GifsLayout endpointUrl={endpointUrl} />;
+  return <GifsLayout endpointUrl={endpointUrl} gifDataTestId='trending-gif' />;
 };
 
 export default TrendingPage;

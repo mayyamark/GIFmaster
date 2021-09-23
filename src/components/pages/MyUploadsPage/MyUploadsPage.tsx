@@ -16,6 +16,7 @@ const MyUploadsPage: React.FC<Props> = ({
     <GifsWithChangableEndpoint
       endpointSubstring={uploads}
       getEndpointUrl={getMyUploadsEndpointUrl}
+      gifDataTestId='uploaded-gif'
     />
   );
 };

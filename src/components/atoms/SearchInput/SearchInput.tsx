@@ -49,6 +49,7 @@ const SearchInput: React.FC<Props> = ({ onKeyPressCallback }): JSX.Element => {
             }
           }
         }}
+        data-testid='search-input'
       />
     </Box>
   );

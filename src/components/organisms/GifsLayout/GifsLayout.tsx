@@ -13,9 +13,13 @@ import useStyles from './GifsLayout.styles';
 
 interface Props {
   endpointUrl: string;
+  gifDataTestId: string;
 }
 
-const GifsLayout: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
+const GifsLayout: React.FC<Props> = ({
+  endpointUrl,
+  gifDataTestId,
+}): JSX.Element => {
   const classes = useStyles();
 
   const [openModal, setOpenModal] = useState(false);
@@ -35,13 +39,14 @@ const GifsLayout: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
       loader={<Loader showLoader={loading} />}
       endMessage={<h4>Nothing more to show</h4>}
     >
-      <Box className={classes.container}>
+      <Box className={classes.container} data-testid='infinite-scroll-child'>
         {data?.map((gif) => {
           const src = gif.images.preview_gif.url || gif.images.original.url;
 
           return (
             <CardMedia
               key={gif.id}
+              data-testid={gifDataTestId}
               component='img'
               src={src}
               alt={gif.title}

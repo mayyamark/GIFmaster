@@ -94,6 +94,7 @@ const GifPreview: React.FC<Props> = ({ gif }) => {
           placement='right'
         >
           <CardMedia
+            data-testid='detailed-gif'
             component='img'
             className={classes.gif}
             onDoubleClick={handleDoubleClick}
@@ -102,10 +103,16 @@ const GifPreview: React.FC<Props> = ({ gif }) => {
           />
         </Tooltip>
         <Fade in={showFavouriteIcon} timeout={600}>
-          <FavoriteIcon className={classes.heartIcon} />
+          <FavoriteIcon
+            className={classes.heartIcon}
+            data-testid='favourite-icon'
+          />
         </Fade>
         <Fade in={showUnfavouriteIcon} timeout={600}>
-          <FavoriteTwoTone className={classes.heartIcon} />
+          <FavoriteTwoTone
+            className={classes.heartIcon}
+            data-testid='unfavourite-icon'
+          />
         </Fade>
       </Box>
       {gif.rating && (
