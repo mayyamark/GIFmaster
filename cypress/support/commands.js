@@ -1,4 +1,5 @@
 import 'cypress-file-upload';
+import 'cypress-localstorage-commands';
 
 Cypress.Commands.add('favouriteGif', () => {
   cy.get('[data-testid="detailed-gif"]')

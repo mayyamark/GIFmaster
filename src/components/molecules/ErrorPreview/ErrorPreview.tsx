@@ -16,7 +16,7 @@ const NoGifsToShow: React.FC<Props> = ({
 
   return (
     <>
-      <Box className={classes.root}>
+      <Box className={classes.root} data-testid='no-gifs-box'>
         <Typography className={classes.oohNo}>Ooh, no!</Typography>
         <Typography className={classes.message}>{message}</Typography>
         <Typography className={classes.linkTypography}>
