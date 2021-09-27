@@ -20,7 +20,7 @@ describe('Upload page', () => {
       .should('be.undefined');
   });
 
-  it('Should display a list of the selected gif and be able to choose only one of them by clicking it', () => {
+  it('Should display a list of the selected gif and be able to choose one of them by clicking it', () => {
     cy.visit('http://localhost:3000/upload-gif');
 
     cy.expectElementToExist('[data-testid="upload-input"]')
@@ -32,17 +32,26 @@ describe('Upload page', () => {
       .expectElementToExist('[data-testid="upload-gif-preview"]');
   });
 
-  //   it.only('Should display the selected gif before uploading it', () => {
-  //     cy.visit('http://localhost:3000/upload-gif');
+  it('Should be possible to upload a gif', () => {
+    cy.setLocalStorage('uploads', '');
 
-  //     cy.expectElementToExist('[data-testid="upload-input"]')
-  //       .attachFile('gif.gif')
-  //       .get('[data-testid="upload-button"]')
-  //       .first()
-  //       .click();
+    cy.intercept(
+      'POST',
+      'http://upload.giphy.com/v1/gifs?api_key=zd5rWKKeQu7wqyr9Bb5nec4cc7PWmK2S',
+      { fixture: 'gif.gif' }
+    ).as('uploadGif');
 
-  //     cy.wait('@upload', { requestTimeout: 10000 }).then(() => {
-  //       expect(localStorage.getItem('favourites')).not.to.be.null;
-  //     });
-  //   });
+    cy.visit('http://localhost:3000/upload-gif');
+
+    cy.expectElementToExist('[data-testid="upload-input"]')
+      .eq(0)
+      .attachFile('gif.gif')
+      .get('[data-testid="upload-button"]')
+      .first()
+      .click();
+
+    cy.wait('@uploadGif');
+
+    cy.expectElementToNotExist('[data-testid="upload-button"]');
+  });
 });
