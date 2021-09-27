@@ -55,10 +55,10 @@ const GifPreview: React.FC<Props> = ({ gif }) => {
 
   return (
     <Box className={classes.root}>
-      <Typography className={classes.title} align='center'>
+      <Typography className={classes.title} align='center' data-testid='title'>
         {gif.title}
       </Typography>
-      <Typography>
+      <Typography data-testid='import-date'>
         {`${moment(gif.import_datetime).format('ll')} (${moment(
           gif.import_datetime,
           'YYYYMMDD'
@@ -66,7 +66,12 @@ const GifPreview: React.FC<Props> = ({ gif }) => {
       </Typography>
       <Box>
         {gif.user && gif.username && (
-          <Link underline='none' href={gif.user.profile_url} target='_blank'>
+          <Link
+            underline='none'
+            href={gif.user.profile_url}
+            target='_blank'
+            data-testid='user-link'
+          >
             <Tooltip arrow title='View profile' placement='right'>
               <Box className={classes.userContainer}>
                 <Avatar
@@ -120,8 +125,9 @@ const GifPreview: React.FC<Props> = ({ gif }) => {
           arrow
           title={explainRaiting(gif.rating).title}
           placement='right'
+          data-testid='raiting-explanation'
         >
-          <Typography className={classes.raiting}>
+          <Typography data-testid='raiting' className={classes.raiting}>
             Raiting: {gif.rating}
           </Typography>
         </Tooltip>
@@ -132,6 +138,7 @@ const GifPreview: React.FC<Props> = ({ gif }) => {
         href={gif.url}
         target='_blank'
         className={classes.externalLink}
+        data-testid='giphy-link'
       >
         View in GIPHY
       </Link>

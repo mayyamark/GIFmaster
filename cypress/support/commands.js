@@ -23,3 +23,7 @@ Cypress.Commands.add('expectImageToBeVisible', (imageSelector) => {
       expect(img[0].naturalHeight).to.be.greaterThan(0);
     });
 });
+
+Cypress.Commands.add('expectElementToExist', (elementSelector) => {
+  cy.get(elementSelector).should((element) => expect(element).not.to.be.null);
+});

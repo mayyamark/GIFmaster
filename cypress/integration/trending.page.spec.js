@@ -5,7 +5,7 @@ describe('Trending page', () => {
     cy.expectImageToBeVisible('[data-testid="trending-gif"]');
   });
 
-  it.only('Should open a modal when clicking on a gif and should be possible to favourite and unfavourite it', () => {
+  it('Should open a modal when clicking on a gif and should be possible to favourite and unfavourite it', () => {
     cy.visit('http://localhost:3000/');
 
     cy.get('[data-testid="trending-gif"]')
@@ -34,15 +34,5 @@ describe('Trending page', () => {
       })
       .get('[data-testid="modal"]')
       .should('be.visible');
-  });
-
-  it('Should navigate to /search-gifs when the user triggers a search', () => {
-    cy.visit('http://localhost:3000/');
-
-    cy.get('[data-testid="search-input"]')
-      .type('dog')
-      .type('{enter}')
-      .url()
-      .should('contains', 'search-gifs?keyword=dog');
   });
 });

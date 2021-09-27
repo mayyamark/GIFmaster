@@ -31,6 +31,7 @@ const SingleGifLayout: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
             variant='outlined'
             onClick={triggerFetch}
             className={classes.button}
+            data-testid='another-gif-button'
           >
             Another one
           </Button>
