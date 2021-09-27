@@ -1,3 +1,5 @@
+import 'cypress-file-upload';
+
 Cypress.Commands.add('favouriteGif', () => {
   cy.get('[data-testid="detailed-gif"]')
     .dblclick()

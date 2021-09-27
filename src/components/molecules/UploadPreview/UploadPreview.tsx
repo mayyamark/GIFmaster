@@ -24,16 +24,23 @@ const UploadPreview: React.FC<Props> = ({
         component='img'
         src={window.URL.createObjectURL(file)}
         className={classes.file}
+        data-testid='upload-gif-preview'
       />
       <Button
         variant='outlined'
         disabled={!file}
         onClick={handleUpload}
         className={classes.uploadButton}
+        data-testid='upload-button'
       >
         Upload
       </Button>
-      <Button variant='outlined' disabled={!file} onClick={handleReset}>
+      <Button
+        variant='outlined'
+        disabled={!file}
+        onClick={handleReset}
+        data-testid='cancel-button'
+      >
         {cancelButtonText}
       </Button>
     </>

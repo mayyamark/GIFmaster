@@ -19,7 +19,7 @@ const UploadInput: React.FC<Props> = ({
 
   return (
     <>
-      <input {...getInputProps()} />
+      <input {...getInputProps()} data-testid='upload-input' />
       {isDragActive ? (
         <Typography>Drop the files here ...</Typography>
       ) : (

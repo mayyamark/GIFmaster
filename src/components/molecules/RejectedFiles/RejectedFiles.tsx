@@ -34,6 +34,7 @@ const RejectedFiles: React.FC<Props> = ({
       <Typography className={classes.errorTitle}>{errorTitle}</Typography>
       {errorFiles.map(({ file: errorFile }) => (
         <Box
+          data-testid='rejected-file-box'
           key={errorFile.name}
           className={classes.errorFileContainer}
           onClick={() => handleClickFile(errorFile)}
