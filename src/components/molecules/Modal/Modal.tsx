@@ -38,6 +38,7 @@ const Modal: React.FC<Props> = ({
       BackdropProps={{
         timeout: 500,
       }}
+      data-testid='modal'
     >
       <Fade in={other.open}>
         <Box className={classes.root}>

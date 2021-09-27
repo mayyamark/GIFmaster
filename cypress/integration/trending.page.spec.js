@@ -2,16 +2,10 @@ describe('Trending page', () => {
   it('Should display trending gifs', () => {
     cy.visit('http://localhost:3000/');
 
-    cy.get('[data-testid="trending-gif"]')
-      .should('be.visible')
-      .and((img) => {
-        // naturalWidth and naturalHeight are set when the image loads
-        expect(img[0].naturalWidth).to.be.greaterThan(0);
-        expect(img[0].naturalHeight).to.be.greaterThan(0);
-      });
+    cy.expectImageToBeVisible('[data-testid="trending-gif"]');
   });
 
-  it('Should be possible to favourite and unfavourite the first gif', () => {
+  it.only('Should open a modal when clicking on a gif and should be possible to favourite and unfavourite it', () => {
     cy.visit('http://localhost:3000/');
 
     cy.get('[data-testid="trending-gif"]')
@@ -37,7 +31,9 @@ describe('Trending page', () => {
       .unfavouriteGif()
       .should(() => {
         expect(localStorage.getItem('favourites')).to.eq('');
-      });
+      })
+      .get('[data-testid="modal"]')
+      .should('be.visible');
   });
 
   it('Should navigate to /search-gifs when the user triggers a search', () => {
