@@ -5,7 +5,7 @@ describe('Trending page', () => {
     cy.expectImageToBeVisible('[data-testid="trending-gif"]');
   });
 
-  it('Should open a modal when clicking on a gif and should be possible to favourite and unfavourite it', () => {
+  it('Should open and close a modal when clicking on a gif and should be possible to favourite and unfavourite it', () => {
     cy.visit('http://localhost:3000/');
 
     cy.get('[data-testid="trending-gif"]')
@@ -32,7 +32,9 @@ describe('Trending page', () => {
       .should(() => {
         expect(localStorage.getItem('favourites')).to.eq('');
       })
-      .get('[data-testid="modal"]')
-      .should('be.visible');
+      .expectElementToExist('[data-testid="modal"]')
+      .expectElementToExist('[data-testid="close-modal-button"]')
+      .click()
+      .expectElementToNotExist('[data-testid="modal"]');
   });
 });

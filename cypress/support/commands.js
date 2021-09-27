@@ -27,3 +27,7 @@ Cypress.Commands.add('expectImageToBeVisible', (imageSelector) => {
 Cypress.Commands.add('expectElementToExist', (elementSelector) => {
   cy.get(elementSelector).should((element) => expect(element).not.to.be.null);
 });
+
+Cypress.Commands.add('expectElementToNotExist', (elementSelector) => {
+  cy.get(elementSelector).should('not.exist');
+});

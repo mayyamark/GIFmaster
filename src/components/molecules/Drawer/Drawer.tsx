@@ -29,20 +29,28 @@ const Drawer: React.FC<Props> = ({ open, handleClose }): JSX.Element => {
 
   const links = useMemo(
     () => [
-      { href: '/favourites', label: 'Favoutites', IconComponent: FavoriteIcon },
+      {
+        href: '/favourites',
+        label: 'Favoutites',
+        dataTestId: 'my-favourites-route-link',
+        IconComponent: FavoriteIcon,
+      },
       {
         href: '/upload-gif',
         label: 'Upload a GIF',
+        dataTestId: 'upload-route-link',
         IconComponent: PublishIcon,
       },
       {
         href: '/my-uploads',
         label: 'My uploads',
+        dataTestId: 'my-uploads-route-link',
         IconComponent: PermMediaIcon,
       },
       {
         href: '/random-gif',
         label: 'Show random GIF',
+        dataTestId: 'random-gif-route-link',
         IconComponent: EmojiEmotionsIcon,
       },
     ],
@@ -59,12 +67,17 @@ const Drawer: React.FC<Props> = ({ open, handleClose }): JSX.Element => {
       classes={{
         paper: classes.drawerPaper,
       }}
+      data-testid='drawer-menu'
     >
       <Box className={classes.drawerHeader}>
         <Typography variant='h6' className={classes.menuText}>
           GIFmaster
         </Typography>
-        <IconButton className={classes.icon} onClick={handleClose}>
+        <IconButton
+          className={classes.icon}
+          onClick={handleClose}
+          data-testid='close-drawer-button'
+        >
           {theme.direction === 'ltr' ? (
             <ChevronLeftIcon />
           ) : (
@@ -80,13 +93,14 @@ const Drawer: React.FC<Props> = ({ open, handleClose }): JSX.Element => {
       </Hidden>
 
       <List className={classes.linksContainer}>
-        {links.map(({ href, label, IconComponent }) => (
+        {links.map(({ href, label, IconComponent, dataTestId }) => (
           <LinkItem
             href={href}
             key={label}
             label={label}
             handleClick={handleClose}
             IconComponent={IconComponent}
+            dataTestId={dataTestId}
             extendStyles={{
               content: label.includes('random')
                 ? classes.randomGifLink

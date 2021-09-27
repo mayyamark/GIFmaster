@@ -15,6 +15,7 @@ interface ExtendStyles {
 interface Props {
   href: string;
   label: string;
+  dataTestId?: string;
   extendStyles?: ExtendStyles;
   // eslint-disable-next-line @typescript-eslint/ban-types
   IconComponent: OverridableComponent<SvgIconTypeMap<{}, 'svg'>>;
@@ -27,13 +28,19 @@ const LinkItem: React.FC<Props> = ({
   IconComponent,
   extendStyles,
   handleClick,
+  dataTestId,
   ...other
 }): JSX.Element => {
   const classes = useStyles();
 
   return (
     <Link href={href} passHref {...other}>
-      <ListItem button onClick={handleClick} className={extendStyles?.content}>
+      <ListItem
+        button
+        onClick={handleClick}
+        className={extendStyles?.content}
+        data-testid={dataTestId}
+      >
         <ListItemIcon>
           <IconComponent className={classes.icon} />
         </ListItemIcon>

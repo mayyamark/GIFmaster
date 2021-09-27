@@ -28,11 +28,16 @@ const AppBar: React.FC<Props> = ({ handleOpenDrawer }): JSX.Element => {
             onClick={handleOpenDrawer}
             edge='start'
             className={classes.openDrawerButton}
+            data-testid='open-drawer-button'
           >
             <MenuIcon />
           </IconButton>
           <Link href='/' passHref>
-            <Typography variant='h6' className={classes.title}>
+            <Typography
+              variant='h6'
+              data-testid='logo-link'
+              className={classes.title}
+            >
               GIFmaster
             </Typography>
           </Link>

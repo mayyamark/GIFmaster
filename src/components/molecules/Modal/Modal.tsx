@@ -53,6 +53,7 @@ const Modal: React.FC<Props> = ({
               disableFocusRipple
               className={classes.closeButton}
               onClick={handleClose}
+              data-testid='close-modal-button'
             >
               <Close className={classes.closeIcon} />
             </IconButton>
