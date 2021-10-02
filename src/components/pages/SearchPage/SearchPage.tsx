@@ -17,6 +17,7 @@ const SearchPage: React.FC<Props> = ({ getSearchEndpointUrl }): JSX.Element => {
 
   return (
     <GifsWithChangableEndpoint
+      isScrollable={true}
       endpointSubstring={keyword as string}
       getEndpointUrl={getSearchEndpointUrl}
       gifDataTestId='searched-gif'

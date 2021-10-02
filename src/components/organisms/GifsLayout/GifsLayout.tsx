@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Box from '@material-ui/core/Box';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -12,11 +12,13 @@ import useFetch from '@app/hooks/useFetch/useFetch';
 import useStyles from './GifsLayout.styles';
 
 interface Props {
+  isScrollable: boolean;
   endpointUrl: string;
   gifDataTestId: string;
 }
 
 const GifsLayout: React.FC<Props> = ({
+  isScrollable,
   endpointUrl,
   gifDataTestId,
 }): JSX.Element => {
@@ -27,19 +29,9 @@ const GifsLayout: React.FC<Props> = ({
 
   const { loading, error, data, fetchMore } = useFetch(endpointUrl);
 
-  if (error) {
-    return <ErrorPreview />;
-  }
-
-  return (
-    <InfiniteScroll
-      dataLength={data?.length || 0}
-      next={fetchMore}
-      hasMore={true}
-      loader={<Loader showLoader={loading} />}
-      endMessage={<h4>Nothing more to show</h4>}
-    >
-      <Box className={classes.container} data-testid='infinite-scroll-child'>
+  const commonContainer = useMemo(() => {
+    return (
+      <Box className={classes.container}>
         {data?.map((gif) => {
           const src = gif.images.preview_gif.url || gif.images.original.url;
 
@@ -72,7 +64,37 @@ const GifsLayout: React.FC<Props> = ({
           </Modal>
         )}
       </Box>
-    </InfiniteScroll>
+    );
+  }, [
+    data,
+    gifDataTestId,
+    gifToPreview,
+    openModal,
+    classes.container,
+    classes.gif,
+    classes.modalContent,
+  ]);
+
+  if (error) {
+    return <ErrorPreview />;
+  }
+
+  return (
+    <>
+      {isScrollable ? (
+        <InfiniteScroll
+          dataLength={data?.length || 0}
+          next={fetchMore}
+          hasMore={true}
+          loader={<Loader showLoader={loading} />}
+          endMessage={<h4>Nothing more to show</h4>}
+        >
+          {commonContainer}
+        </InfiniteScroll>
+      ) : (
+        commonContainer
+      )}
+    </>
   );
 };
 

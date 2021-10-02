@@ -5,12 +5,14 @@ import GifsLayout from '@app/components/organisms/GifsLayout/GifsLayout';
 import Loader from '@app/components/atoms/Loader/Loader';
 
 interface Props {
+  isScrollable: boolean;
   gifDataTestId: string;
   endpointSubstring: string;
   getEndpointUrl: (ids: string) => string;
 }
 
 const GifsWithChangableEndpoint: React.FC<Props> = ({
+  isScrollable,
   gifDataTestId,
   endpointSubstring,
   getEndpointUrl,
@@ -32,7 +34,11 @@ const GifsWithChangableEndpoint: React.FC<Props> = ({
   return endpoint === '' ? (
     <NoGifsToShow message='No gifs to show!' />
   ) : (
-    <GifsLayout endpointUrl={endpoint} gifDataTestId={gifDataTestId} />
+    <GifsLayout
+      isScrollable={isScrollable}
+      endpointUrl={endpoint}
+      gifDataTestId={gifDataTestId}
+    />
   );
 };
 

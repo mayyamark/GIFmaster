@@ -14,6 +14,7 @@ const MyUploadsPage: React.FC<Props> = ({
 
   return (
     <GifsWithChangableEndpoint
+      isScrollable={false}
       endpointSubstring={uploads}
       getEndpointUrl={getMyUploadsEndpointUrl}
       gifDataTestId='uploaded-gif'

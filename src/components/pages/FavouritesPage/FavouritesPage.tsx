@@ -14,6 +14,7 @@ const FavouritesPage: React.FC<Props> = ({
 
   return (
     <GifsWithChangableEndpoint
+      isScrollable={false}
       endpointSubstring={favourites}
       getEndpointUrl={getFavouritesEndpointUrl}
       gifDataTestId='favourited-gif'
