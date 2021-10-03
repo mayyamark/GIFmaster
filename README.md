@@ -5,7 +5,7 @@ Now [TypeScript](https://www.typescriptlang.org/), [React.js](https://reactjs.or
 
 ## Running Guide
 
-### Using yarn:
+### Using yarn (npm):
 
 1. Clone the repository.
 1. Open a new Terminal in the root directory and install the dependencies by running the command:
@@ -14,10 +14,22 @@ Now [TypeScript](https://www.typescriptlang.org/), [React.js](https://reactjs.or
    yarn install
    ```
 
+   or using npm:
+
+   ```sh
+   npm install
+   ```
+
 1. Run the application by running the command:
 
    ```sh
    yarn dev
+   ```
+
+   or using npm:
+
+   ```sh
+   npm run dev
    ```
 
 1. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -61,37 +73,51 @@ Now [TypeScript](https://www.typescriptlang.org/), [React.js](https://reactjs.or
 
 ## File structure
 
-### 1. pages
+### pages
 
-React pages.
+Next.js pages.
 
-### 2. public
+### public
 
 Public files, such as the favicon.
 
-### 3. src
+### src
 
-#### 3.1. components
+#### - components
 
 The project uses a variation of [Atomic design by Brad Frost](https://bradfrost.com/blog/post/atomic-web-design/):
 
-- **atoms** - basic building blocks (input field)
-- **molecules** - 2 or more Atoms together ( input field with label )
-- **organisms** - 2 or more Molecules together (form of input fields with labels)
-- **pages** - Page components (Favourites page)
+- **atoms** - basic building blocks _(input field)_
+- **molecules** - 2 or more Atoms together _(input field with label)_
+- **organisms** - 2 or more Molecules together _(form of input fields with labels)_
+- **pages** - Page components _(Favourites page)_
 
-#### 3.2. constants
+#### - constants
 
 Files that contain constants, used in the application more than once.
 
-#### 3.3. context
+#### - context
 
 Files for managing global React state (favourites, uploaded gifs).
 
-#### 3.4. hooks
+#### - hooks
 
 Files with custom React hooks.
 
-#### 3.5. utils
+#### - utils
 
 Files with helper functions.
+
+## Tests
+
+End-to-end [Cypress](https://www.cypress.io/) tests are available. To run them, use the command below:
+
+```sh
+yarn cy:open
+```
+
+or using npm:
+
+```sh
+npm run cy:open
+```
