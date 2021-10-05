@@ -39,7 +39,7 @@ Now [TypeScript](https://www.typescriptlang.org/), [React.js](https://reactjs.or
 
 1. Clone the repository.
 
-1. Choose a name for your container. Open a new Terminal and run the command:
+1. Choose a name for your container. Open a new Terminal in the root directory and run the command:
 
    ```sh
    docker build -t <name-of-container> .
@@ -110,7 +110,7 @@ Files with helper functions.
 
 ## Tests
 
-End-to-end [Cypress](https://www.cypress.io/) tests are available. To run them, use the command below:
+End-to-end [Cypress](https://www.cypress.io/) tests are available. To run them, open a Terminal in the root directory use the command below:
 
 ```sh
 yarn cy:open
