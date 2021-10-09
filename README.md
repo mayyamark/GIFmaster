@@ -7,7 +7,7 @@ Now [TypeScript](https://www.typescriptlang.org/), [React.js](https://reactjs.or
 
 ### Using yarn (npm):
 
-1. Clone the repository.
+1. Clone the GIFmaster GitHub repository.
 1. Open a new Terminal in the root directory and install the dependencies by running the command:
 
    ```sh
@@ -37,7 +37,22 @@ Now [TypeScript](https://www.typescriptlang.org/), [React.js](https://reactjs.or
 
 ### Using Docker:
 
-1. Clone the repository.
+#### By pulling the container from DockerHub:
+
+1. Open a new terminal and to pull the container, run the command:
+
+   ```sh
+   docker pull markmayya/gifmaster:latest
+   ```
+
+2. To run the container use the command:
+   ```sh
+   docker run -dp 3000:3000 gifmaster
+   ```
+
+#### By creating a new container:
+
+1. Clone the GIFmaster GitHub repository.
 
 1. Choose a name for your container. Open a new Terminal in the root directory and run the command:
 
