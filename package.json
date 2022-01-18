@@ -34,7 +34,7 @@
     "@types/react": "17.0.38",
     "@types/react-infinite-scroll-component": "^5.0.0",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
-    "@typescript-eslint/parser": "^4.28.2",
+    "@typescript-eslint/parser": "^4.33.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.3",
