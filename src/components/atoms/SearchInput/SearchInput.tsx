@@ -42,7 +42,7 @@ const SearchInput: React.FC<Props> = ({ onKeyPressCallback }): JSX.Element => {
             });
 
             setKeyword('');
-            inputRef.current.blur()!;
+            inputRef?.current?.blur();
 
             if (onKeyPressCallback) {
               onKeyPressCallback();
