@@ -7,7 +7,6 @@ interface Props {
 }
 
 const TrendingPage: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
-  document.write('HI');
   return (
     <GifsLayout
       isScrollable={true}
