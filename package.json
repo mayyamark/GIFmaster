@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
-    "@material-ui/icons": "^4.11.2",
+    "@material-ui/icons": "^4.11.3",
     "@types/moment": "^2.13.0",
     "@types/react-avatar-editor": "^10.3.6",
     "@types/react-dropzone": "^5.1.0",
