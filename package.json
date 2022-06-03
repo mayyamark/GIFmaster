@@ -39,7 +39,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.3",
     "babel-plugin-module-resolver": "^4.1.0",
-    "cypress": "^9.2.1",
+    "cypress": "^10.0.2",
     "cypress-file-upload": "^5.0.8",
     "cypress-localstorage-commands": "^1.6.1",
     "dotenv": "^14.2.0",
