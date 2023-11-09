@@ -65,7 +65,7 @@ const UploadPage: React.FC<Props> = ({ endpointUrl }): JSX.Element => {
           setError(true);
         }
       } catch (err) {
-        setError(err);
+        setError(true);
       } finally {
         setFile(null);
         setLoading(false);

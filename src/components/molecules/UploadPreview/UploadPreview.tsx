@@ -20,12 +20,14 @@ const UploadPreview: React.FC<Props> = ({
 
   return (
     <>
-      <CardMedia
-        component='img'
-        src={window.URL.createObjectURL(file)}
-        className={classes.file}
-        data-testid='upload-gif-preview'
-      />
+      {file && (
+        <CardMedia
+          component='img'
+          src={window.URL.createObjectURL(file)}
+          className={classes.file}
+          data-testid='upload-gif-preview'
+        />
+      )}
       <Button
         variant='outlined'
         disabled={!file}
